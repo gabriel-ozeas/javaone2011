@@ -6,14 +6,20 @@
 <body>
 	<ui:composition template="/WEB-INF/layouts/template.xhtml">
 		<ui:define name="titulo">Filmes registrados</ui:define>
+		
 		<ui:define name="conteudo">
 			<h:form>
-				<h:dataTable value="#{movieController.movies}" var="movie" styleClass="tabela" headerClass="header">
+				<h:panelGrid>
+					<h:commandLink action="addNewMovie" value="Adicionar Novo Filme"/>
+				</h:panelGrid>
+				<h:dataTable value="#{movieController.movies}" var="movie" styleClass="tabela" headerClass="header" rowClasses="odd,even">
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Titulo" />
 						</f:facet>
-						<h:outputText value="#{movie.title}"/>
+						<h:commandLink action="#{movieController.showMovie}" value="#{movie.title}">
+							<f:setPropertyActionListener target="#{movieController.movie}" value="#{movie}"/>
+						</h:commandLink>
 					</h:column>
 					
 					<h:column>
@@ -51,7 +57,18 @@
 						<h:outputText value="#{movie.available}"/>
 					</h:column>
 					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ações" />
+						</f:facet>
+						<h:commandLink action="#{movieController.delete}" value="Deletar">
+							<f:setPropertyActionListener target="#{movieController.movie}" value="#{movie}"/>
+						</h:commandLink>
+					</h:column>
 				</h:dataTable>
+				<h:panelGrid>
+					<h:commandLink action="addNewMovie" value="Adicionar Novo Filme"/>
+				</h:panelGrid>
 			</h:form>
 		</ui:define>
 	</ui:composition>
