@@ -1,0 +1,7 @@
+These are some examples to demonstrate at JavaOne 2011 at Brazil. The paper is about the new features of JSF 2.0
+
+To run the projects, you can choose the version (i.e 1.2, 2.0 or 2.2 projects), and inside the folder, type:
+
+mvn clean package jetty:run
+
+Of course, you need to use Maven 3 ;p
