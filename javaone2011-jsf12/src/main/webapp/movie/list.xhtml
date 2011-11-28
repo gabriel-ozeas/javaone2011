@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name="titulo">Filmes registrados</ui:define>
+		<ui:define name="conteudo">
+			<h:form>
+				<h:dataTable value="#{movieController.movies}" var="movie" styleClass="tabela" headerClass="header">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Titulo" />
+						</f:facet>
+						<h:outputText value="#{movie.title}"/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ano" />
+						</f:facet>
+						<h:outputText value="#{movie.year}"/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Diretor" />
+						</f:facet>
+						<h:outputText value="#{movie.director}"/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Gênero" />
+						</f:facet>
+						<h:outputText value="#{movie.gender}"/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Total de Medias" />
+						</f:facet>
+						<h:outputText value="#{movie.totalMedias} unidades"/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Disponível?" />
+						</f:facet>
+						<h:outputText value="#{movie.available}"/>
+					</h:column>
+					
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
