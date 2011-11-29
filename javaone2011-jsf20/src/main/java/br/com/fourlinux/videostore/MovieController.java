@@ -3,9 +3,10 @@ package br.com.fourlinux.videostore;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -15,8 +16,8 @@ import javax.faces.model.SelectItem;
  * @author Gabriel Ozeas de Oliveira
  * 
  */
-@ManagedBean(name = "movieController")
-@ApplicationScoped
+@ManagedBean
+@SessionScoped
 public class MovieController {
 	/**
 	 * All available movies for location
@@ -28,8 +29,8 @@ public class MovieController {
 	private static final String DELETE_MESSAGE = "Filme %s deletado com sucesso!";
 	private static final String NO_MOVIE_SELECTED = "Nenhum filme foi selecionado!";
 
-	
-	public MovieController() {
+	@PostConstruct
+	public void initializeController() {
 		movie = new Movie();
 		populateMovieList();
 	}
