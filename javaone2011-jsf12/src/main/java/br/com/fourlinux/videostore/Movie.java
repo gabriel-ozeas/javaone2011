@@ -6,6 +6,7 @@ public class Movie {
 	private String director;
 	private String genre;
 	private int totalMedias;
+	private MovieStatistics statistics;
 	private boolean available = true;
 
 	public Movie() {
