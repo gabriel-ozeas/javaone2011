@@ -5,3 +5,5 @@ To run the projects, you can choose the version (i.e 1.2, 2.0 or 2.2 projects), 
 mvn clean package jetty:run
 
 Of course, you need to use Maven 3 ;p
+
+The 1.2 version of project is configured to use the port 8084, while the 2.0 version is configured to use the port 8080
