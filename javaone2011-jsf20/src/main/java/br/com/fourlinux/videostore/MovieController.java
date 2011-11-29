@@ -15,7 +15,7 @@ import javax.faces.model.SelectItem;
  * @author Gabriel Ozeas de Oliveira
  * 
  */
-@ManagedBean(name="movieController")
+@ManagedBean(name = "movieController")
 @ApplicationScoped
 public class MovieController {
 	/**
@@ -24,11 +24,11 @@ public class MovieController {
 	private List<Movie> movies = new ArrayList<Movie>();
 	private List<String> genres = new ArrayList<String>();
 	private Movie movie;
-	
 
 	private static final String DELETE_MESSAGE = "Filme %s deletado com sucesso!";
 	private static final String NO_MOVIE_SELECTED = "Nenhum filme foi selecionado!";
 
+	
 	public MovieController() {
 		movie = new Movie();
 		populateMovieList();
@@ -38,7 +38,7 @@ public class MovieController {
 		movie = new Movie();
 		return "/movie/form?faces-redirect=true";
 	}
-	
+
 	public String save() {
 		if (movie != null) {
 			movies.add(movie);
@@ -50,10 +50,11 @@ public class MovieController {
 	public String delete() {
 		if (movie != null && movies.contains(movie)) {
 			movies.remove(movie);
-			FacesMessage deleteMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-					String.format(DELETE_MESSAGE, movie.getTitle()), null);
+			FacesMessage deleteMessage = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, String.format(DELETE_MESSAGE,
+							movie.getTitle()), null);
 			FacesContext.getCurrentInstance().addMessage(null, deleteMessage);
-		}		
+		}
 		return null;
 	}
 
@@ -65,12 +66,12 @@ public class MovieController {
 		if (movie != null) {
 			return "/movie/show?faces-redirect=true";
 		} else {
-			FacesMessage errorMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-					NO_MOVIE_SELECTED, null);
+			FacesMessage errorMessage = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, NO_MOVIE_SELECTED, null);
 			FacesContext.getCurrentInstance().addMessage(null, errorMessage);
 			return "/movie/list";
 		}
-		
+
 	}
 
 	public List<Movie> getMovies() {
@@ -96,7 +97,7 @@ public class MovieController {
 		}
 		return genreList;
 	}
-	
+
 	private void populateMovieList() {
 		Movie m1 = new Movie();
 		m1.setTitle("Senhor dos Anéis: A Sociedade do Anel");
@@ -129,7 +130,7 @@ public class MovieController {
 		m4.setYear(2002);
 		m4.setGenre("Drama");
 		movies.add(m4);
-		
+
 		// Populating genre list
 		genres.add("Drama");
 		genres.add("Action");
