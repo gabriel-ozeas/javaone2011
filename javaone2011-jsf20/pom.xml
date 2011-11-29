@@ -95,5 +95,11 @@
     		<version>2.0</version>
     		<scope>provided</scope>
     	</dependency>
+    	<dependency>
+    		<groupId>br.com.fourlinux</groupId>
+    		<artifactId>javaone2011-ejb</artifactId>
+    		<version>1.0</version>
+    		<type>ejb</type>
+    	</dependency>
     </dependencies>
 </project>
