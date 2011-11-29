@@ -4,7 +4,7 @@ public class Movie {
 	private String title;
 	private int year;
 	private String director;
-	private String gender;
+	private String genre;
 	private int totalMedias;
 	private boolean available = true;
 
@@ -41,12 +41,12 @@ public class Movie {
 		this.director = director;
 	}
 
-	public String getGender() {
-		return gender;
+	public String getGenre() {
+		return genre;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 	public int getTotalMedias() {

@@ -121,11 +121,11 @@
 	margin-bottom: 5px;
 }
 
-.tabela .odd {
+.odd {
 	background: #ffffff;
 }
 
-.tabela .even {
+.even {
 	background: #f1f1f1;
 }
 
@@ -157,3 +157,9 @@
 .formulario input[type=submit]:hover {
 	cursor: pointer;
 }
+
+.descricao {width:100%; float:left; margin-top: 10px;}
+.descricao dd{
+	margin-bottom: 10px;
+}
+

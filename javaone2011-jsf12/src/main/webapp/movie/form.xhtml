@@ -21,8 +21,8 @@
 					<h:message for="director" errorClass="message-form-error" infoClass="message-form-info"/>
 					
 					<h:outputText value="Genêro" />
-					<h:selectOneMenu value="#{movieController.movie.gender}" required="true" id="gender">
-						<f:selectItems value="#{movieController.genderList}" />
+					<h:selectOneMenu value="#{movieController.movie.genre}" required="true" id="gender">
+						<f:selectItems value="#{movieController.genreList}" />
 					</h:selectOneMenu>	
 					<h:message for="gender" errorClass="message-form-error" infoClass="message-form-info"/>
 					
@@ -43,7 +43,7 @@
 					<h:message for="medias" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 				</h:panelGrid>
 				<h:panelGroup>
-					<h:commandButton action="save" value="Adicionar"/>
+					<h:commandButton action="#{movieController.save}" value="Adicionar"/>
 					<h:commandButton action="listAllMovies" value="Cancelar" immediate="true"/>
 				</h:panelGroup>
 			</h:form>
