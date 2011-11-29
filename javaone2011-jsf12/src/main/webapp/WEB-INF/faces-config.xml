@@ -12,6 +12,14 @@
 
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>addNewMovie</from-outcome>
+			<to-view-id>/movie/form.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>listAllMovies</from-outcome>
 			<to-view-id>/movie/list.xhtml</to-view-id>
 			<redirect/>

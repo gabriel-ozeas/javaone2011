@@ -4,23 +4,48 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:composition template="/layouts/template.xhtml">
-		<ui:define name="titulo">Formulario de adicao de filmes</ui:define>
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name="titulo">Novo filme</ui:define>
 		<ui:define name="conteudo">
-			<h:form id="form">
-				<h:panelGrid columns="2">
-					<h:outputText value="Diretor" />
-					<h:inputText id="director"/>
-					
+		
+			<h:messages globalOnly="true" errorClass="message-error" infoClass="message-info"/>
+		
+			<h:form id="form" styleClass="formulario">
+				<h:panelGrid columns="3">
 					<h:outputText value="Titulo" />
-					<h:inputText id="title"/>
+					<h:inputText id="title" value="#{movieController.movie.title}" required="true"/>
+					<h:message for="title" errorClass="message-form-error" infoClass="message-form-info"/>	
+				
+					<h:outputText value="Diretor" />
+					<h:inputText id="director" value="#{movieController.movie.director}" required="true"/>
+					<h:message for="director" errorClass="message-form-error" infoClass="message-form-info"/>
+					
+					<h:outputText value="Genêro" />
+					<h:selectOneMenu value="#{movieController.movie.gender}" required="true" id="gender">
+						<f:selectItems value="#{movieController.genderList}" />
+					</h:selectOneMenu>	
+					<h:message for="gender" errorClass="message-form-error" infoClass="message-form-info"/>
 					
 					<h:outputText value="Ano" />
-					<h:inputText id="year"/>
+					<h:inputText id="year" value="#{movieController.movie.year}" required="true" >
+						<f:validateLongRange minimum="1800" maximum="3000"/>
+					</h:inputText>
+					<h:message for="year" errorClass="message-form-error" infoClass="message-form-info"/>
 					
-					<h:commandButton action="addNewMovie" value="Adicionar"/>
+					<h:selectBooleanCheckbox value="#{movieController.movie.available}" id="available"/>
+					<h:outputText value="Disponível?" />
+					<h:message for="available" errorClass="message-form-error" infoClass="message-form-info"/>
 					
+					<h:outputText value="Total de Medias" />
+					<h:inputText id="medias" value="#{movieController.movie.totalMedias}" required="true" size="5">
+						<f:validateLongRange minimum="0"/>
+					</h:inputText>
+					<h:message for="medias" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 				</h:panelGrid>
+				<h:panelGroup>
+					<h:commandButton action="save" value="Adicionar"/>
+					<h:commandButton action="listAllMovies" value="Cancelar" immediate="true"/>
+				</h:panelGroup>
 			</h:form>
 		</ui:define>
 	</ui:composition>

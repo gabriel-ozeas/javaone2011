@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>javaone-jsf12</artifactId>
+    <artifactId>javaone2011-jsf12</artifactId>
     <packaging>war</packaging>
 
     <name>javaone2011-jsf12</name>
