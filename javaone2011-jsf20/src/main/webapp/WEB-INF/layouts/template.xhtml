@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+	<head>
+		<title><ui:insert name="titulo">4Linux JavaOne 2011 - JSF 1.2</ui:insert></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/reset.css" type="text/css"/>
+		<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/estilo.css" type="text/css"/>
+	</head>
+	
+	<body>
+		<div id="topo" class="box-full-page">
+			<div id="topo-inside">
+				<div id="logo">
+					<h1><span><span id="logo-num-4">4</span>Linux : </span>JavaOne2011</h1>
+					<p>As novidades do JSF2!</p>
+				</div>
+				<div id="menu">
+					<ul>
+						<li><a href="#">Navegação Implicita</a></li>
+						<li><a href="#">Recursos</a></li>
+						<li><a href="#">ManagedBeans</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="conteudo" class="box-full-page">
+			<div id="conteudo-inside">
+				<h1>
+					<ui:insert name="titulo">
+						<h1>Locadora 4Linux</h1>
+					</ui:insert>
+				</h1>
+				<ui:insert name="conteudo">
+						<ui:include src="home.xhtml" /> 
+				</ui:insert>
+			</div>
+		</div>
+		<div id="rodape" class="box-full-page"></div>
+		<ui:debug hotkey="d" rendered="true"/>
+	</body>
+</html>

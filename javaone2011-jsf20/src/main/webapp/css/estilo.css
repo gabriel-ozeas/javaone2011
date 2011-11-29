@@ -1,1 +1,166 @@
-@CHARSET "ISO-8859-1";
+.box-full-page {
+	width: 100%;
+	float: left;
+}
+
+#topo {
+	background: #2a2a2a;
+	border-bottom: 10px solid #373737;
+	border-top: 5px solid #373737;
+}
+
+#topo-inside {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#logo {
+	float: left;
+	margin: 15px 0 15px 60px;
+	color: #ffffff;
+	width: 400px;
+	position: relative;
+}
+
+#logo h1 {
+	font-family: "Myriad Pro", Arial, sans-serif;
+	font-size: 1.9em;
+}
+
+#logo h1  span {
+	font-weight: bolder;
+}
+
+#logo h1 #logo-num-4 {
+	position: absolute;
+	top: -15px;
+	left: -45px;
+	font-size: 2.8em;
+	color: #00aab0;
+}
+
+#logo p {
+	font-family: "Myriad Pro", Arial, sans-serif;
+	font-size: 1.4em;
+	margin-left: 150px;
+}
+
+#menu {
+	float: right;
+	margin: 30px 30px 30px 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#menu ul li {
+	display: inline;
+}
+
+#menu ul li a {
+	text-decoration: none;
+	margin: 0 2px 0 2px;
+	color: #ffffff;
+	padding: 3px 10px 3px 10px;
+}
+
+#menu ul li a:hover {
+	background: #000000;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+
+#conteudo-inside {
+	margin: 0 auto;
+	width: 960px;
+	padding: 10px 05px 10px 5px;
+}
+
+#conteudo h1 {
+	font-size: 2.8em;
+	margin-bottom: 10px;
+}
+
+.message-info {
+	font-size: 1.24em;
+	color: blue;
+	margin: 0 auto;
+	text-align: center;
+	font-family: Arial, Verdana, sans-serif;
+}
+
+.message-form-info, .message-form-error {
+	font-size: 0.7em;
+}
+
+.message-form-info {
+	color:blue;
+}
+
+.message-form-error {
+	color:red;
+}
+
+/*Tabelas*/
+.tabela {
+	margin: 15px 0 10px 0;
+	font-family: Arial, Verdana, sans-serif;
+	border: #cccccc 01px solid;
+	padding: 3px;
+	width: 100%;
+}
+
+.tabela tr td {
+	padding: 10px 0px 10px 0px;
+}
+
+.tabela .header {
+	background: #f1f1f1;
+	padding: 5px;
+	color: #2a2a2a;
+	font-weight: bolder;
+	margin-bottom: 5px;
+}
+
+.odd {
+	background: #ffffff;
+}
+
+.even {
+	background: #f1f1f1;
+}
+
+.formulario {
+	font-size: 1.4em;
+}
+
+.formulario tr td {
+	padding: 5px 10px;
+}
+
+.formulario input[type=text] {
+	border: 01px #cccccc solid;
+	padding: 3px 7px 3px 7px;
+	font-size: 1.4em;
+}
+
+.formulario input[type=submit] {
+	padding: 5px 10px 5px 10px;
+	background:#2a2a2a;
+	color:#ffffff;
+	font-size: 0.8em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border:none;
+}
+
+.formulario input[type=submit]:hover {
+	cursor: pointer;
+	margin: 0 05px;
+}
+
+.descricao {width:100%; float:left; margin-top: 10px;}
+.descricao dd{
+	margin-bottom: 10px;
+}
+

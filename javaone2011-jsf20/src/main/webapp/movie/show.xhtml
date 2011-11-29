@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name = "titulo">#{movieController.movie.title}</ui:define>
+		<ui:define name = "conteudo">
+			<h:form >
+				<h:commandLink action="/movie/list?faces-redirect=true" value="Voltar" />
+			</h:form>
+			
+			<div id="info" class="formulario">
+				<dl class="descricao">
+					<dt><h:outputText value="Diretor: "/></dt>
+					<dd><h:outputText value="#{movieController.movie.director}" name="director"/></dd>
+					
+					<dt><h:outputText value="Ano de Lançamento: "/></dt>
+					<dd><h:outputText value="#{movieController.movie.year}" name="year"/></dd>
+					
+					<dt><h:outputText value="Gênero: "/></dt>
+					<dd><h:outputText value="#{movieController.movie.genre}" name="genre"/></dd>
+					
+					<dt><h:outputText value="Número de Medias em Estoque: "/></dt>
+					<dd><h:outputText value="#{movieController.movie.totalMedias}" name="totalMedias"/></dd>
+					
+					<dt><h:outputText value="Filme Disponível? "/></dt>
+					<dd><h:outputText value="#{movieController.movie.available}" name="available"/></dd>
+				</dl>	
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

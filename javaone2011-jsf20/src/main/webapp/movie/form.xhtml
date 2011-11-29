@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name="titulo">Novo filme</ui:define>
+		<ui:define name="conteudo">
+		
+			<h:messages globalOnly="true" errorClass="message-error" infoClass="message-info"/>
+		
+			<h:form id="form" styleClass="formulario">
+				<h:panelGrid columns="3">
+					<h:outputText value="Titulo" />
+					<h:inputText id="title" value="#{movieController.movie.title}" required="true"/>
+					<h:message for="title" errorClass="message-form-error" infoClass="message-form-info"/>	
+				
+					<h:outputText value="Diretor" />
+					<h:inputText id="director" value="#{movieController.movie.director}" required="true"/>
+					<h:message for="director" errorClass="message-form-error" infoClass="message-form-info"/>
+					
+					<h:outputText value="Genêro" />
+					<h:selectOneMenu value="#{movieController.movie.genre}" required="true" id="gender">
+						<f:selectItems value="#{movieController.genreList}" />
+					</h:selectOneMenu>	
+					<h:message for="gender" errorClass="message-form-error" infoClass="message-form-info"/>
+					
+					<h:outputText value="Ano" />
+					<h:inputText id="year" value="#{movieController.movie.year}" required="true" >
+						<f:validateLongRange minimum="1800" maximum="3000"/>
+					</h:inputText>
+					<h:message for="year" errorClass="message-form-error" infoClass="message-form-info"/>
+					
+					<h:selectBooleanCheckbox value="#{movieController.movie.available}" id="available"/>
+					<h:outputText value="Disponível?" />
+					<h:message for="available" errorClass="message-form-error" infoClass="message-form-info"/>
+					
+					<h:outputText value="Total de Medias" />
+					<h:inputText id="medias" value="#{movieController.movie.totalMedias}" required="true" size="5">
+						<f:validateLongRange minimum="0"/>
+					</h:inputText>
+					<h:message for="medias" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
+				</h:panelGrid>
+				<h:panelGroup>
+					<h:commandButton action="#{movieController.save}" value="Adicionar"/>
+					<h:commandButton action="/movie/list?faces-redirect=true" value="Cancelar" immediate="true"/>
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

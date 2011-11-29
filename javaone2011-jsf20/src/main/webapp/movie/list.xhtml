@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name="titulo">Filmes registrados</ui:define>
+
+		<ui:define name="conteudo">
+			<h:messages errorClass="message-error"
+				infoClass="message-info" globalOnly="true"></h:messages>
+
+			<h:form>
+				<h:panelGroup>
+					<h:commandLink action="#{movieController.addNew}" value="Adicionar Novo Filme" />
+				</h:panelGroup>
+				<h:dataTable value="#{movieController.movies}" var="movie"
+					styleClass="tabela" headerClass="header" rowClasses="odd,even">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Titulo" />
+						</f:facet>
+						<h:commandLink action="#{movieController.showMovie}"
+							value="#{movie.title}">
+							<f:setPropertyActionListener target="#{movieController.movie}"
+								value="#{movie}" />
+						</h:commandLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ano" />
+						</f:facet>
+						<h:outputText value="#{movie.year}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Diretor" />
+						</f:facet>
+						<h:outputText value="#{movie.director}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Gênero" />
+						</f:facet>
+						<h:outputText value="#{movie.genre}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Total de Medias" />
+						</f:facet>
+						<h:outputText value="#{movie.totalMedias} unidades" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Disponível?" />
+						</f:facet>
+						<h:outputText value="#{movie.available}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ações" />
+						</f:facet>
+						<h:commandLink action="#{movieController.delete}" value="Deletar">
+							<f:setPropertyActionListener target="#{movieController.movie}"
+								value="#{movie}" />
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+				<h:panelGroup>
+					<h:commandLink action="#{movieController.addNew}" value="Adicionar Novo Filme" />
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
