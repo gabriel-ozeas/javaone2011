@@ -88,6 +88,18 @@
 	font-family: Arial, Verdana, sans-serif;
 }
 
+.message-form-info, .message-form-error {
+	font-size: 0.7em;
+}
+
+.message-form-info {
+	color:blue;
+}
+
+.message-form-error {
+	color:red;
+}
+
 /*Tabelas*/
 .tabela {
 	margin: 15px 0 10px 0;
@@ -129,4 +141,19 @@
 	border: 01px #cccccc solid;
 	padding: 3px 7px 3px 7px;
 	font-size: 1.4em;
+}
+
+.formulario input[type=submit] {
+	padding: 5px 10px 5px 10px;
+	background:#2a2a2a;
+	color:#ffffff;
+	font-size: 0.8em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border:none;
+}
+
+.formulario input[type=submit]:hover {
+	cursor: pointer;
 }

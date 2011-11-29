@@ -10,8 +10,8 @@
 		
 			<h:messages globalOnly="true" errorClass="message-error" infoClass="message-info"/>
 		
-			<h:form id="form">
-				<h:panelGrid columns="3" styleClass="formulario">
+			<h:form id="form" styleClass="formulario">
+				<h:panelGrid columns="3">
 					<h:outputText value="Titulo" />
 					<h:inputText id="title" value="#{movieController.movie.title}" required="true"/>
 					<h:message for="title" errorClass="message-form-error" infoClass="message-form-info"/>	
@@ -40,11 +40,12 @@
 					<h:inputText id="medias" value="#{movieController.movie.totalMedias}" required="true" size="5">
 						<f:validateLongRange minimum="0"/>
 					</h:inputText>
-					<h:message for="medias" errorClass="message-form-error" infoClass="message-form-info"/>
-					
-					<h:commandButton action="addNewMovie" value="Adicionar"/>
-					
+					<h:message for="medias" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 				</h:panelGrid>
+				<h:panelGroup>
+					<h:commandButton action="save" value="Adicionar"/>
+					<h:commandButton action="listAllMovies" value="Cancelar" immediate="true"/>
+				</h:panelGroup>
 			</h:form>
 		</ui:define>
 	</ui:composition>
