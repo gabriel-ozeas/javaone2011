@@ -5,7 +5,7 @@
 
 	<managed-bean>
 		<managed-bean-name>movieController</managed-bean-name>
-		<managed-bean-class>br.com.fourlinux.videostore.MovieController</managed-bean-class>
+		<managed-bean-class>br.com.fourlinux.videostore.MovieBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 

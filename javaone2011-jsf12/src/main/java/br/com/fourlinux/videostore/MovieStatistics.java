@@ -1,22 +1,33 @@
 package br.com.fourlinux.videostore;
 
-public class MovieStatistics {
-	private int rate;
-	private long totalRented;
+import java.math.BigDecimal;
 
-	public int getRate() {
+public class MovieStatistics {
+	private float rate;
+	private long totalVotes;
+	private int votedAsFavorite;
+
+	public float getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
+	public void setRate(float rate) {
 		this.rate = rate;
 	}
 
-	public long getTotalRented() {
-		return totalRented;
+	public long getTotalVotes() {
+		return totalVotes;
 	}
 
-	public void setTotalRented(long totalRented) {
-		this.totalRented = totalRented;
+	public void setTotalVotes(long totalVotes) {
+		this.totalVotes = totalVotes;
+	}
+
+	public int getVotedAsFavorite() {
+		return votedAsFavorite;
+	}
+
+	public void setVotedAsFavorite(int votedAsFavorite) {
+		this.votedAsFavorite = votedAsFavorite;
 	}
 }

@@ -58,6 +58,14 @@ public class Movie {
 		this.totalMedias = totalMedias;
 	}
 
+	public MovieStatistics getStatistics() {
+		return statistics;
+	}
+
+	public void setStatistics(MovieStatistics statistics) {
+		this.statistics = statistics;
+	}
+
 	public boolean isAvailable() {
 		return available;
 	}
