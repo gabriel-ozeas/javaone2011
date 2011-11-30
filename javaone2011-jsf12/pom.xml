@@ -41,8 +41,9 @@
             
             
             <plugin>
-            	<groupId>org.mortbay.jetty</groupId>
-            	<artifactId>maven-jetty-plugin</artifactId>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>8.0.4.v20111024</version>
             	<configuration>
             		<contextPath>/</contextPath>
             		<scanIntervalSeconds>10</scanIntervalSeconds>
@@ -73,7 +74,39 @@
 			    	</dependency>
             	</dependencies>
             </plugin>
-            
+
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.1.3</version>
+				<configuration>
+					<configuration>
+						<type>standalone</type>
+						<configfiles>
+							<configfile>
+								<file>${basedir}/src/main/jboss6x/deploy/movie-hsqldb-ds.xml</file>
+								<todir>deploy</todir>
+							</configfile>
+						</configfiles>
+						<deployables>
+							<deployable>
+								<properties>
+									<context>ROOT</context>
+								</properties>
+							</deployable>
+						</deployables>
+					</configuration>
+
+					<container>
+						<containerId>jboss61x</containerId>
+						<timeout>1800000</timeout>
+						<zipUrlInstaller>
+							<url>http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip</url>
+							<downloadDir>downloads</downloadDir>
+						</zipUrlInstaller>
+					</container>
+				</configuration>
+			</plugin>		
         </plugins>
     </build>
 
@@ -85,16 +118,28 @@
     		<scope>provided</scope>
     	</dependency>
     	<dependency>
-    		<groupId>com.sun.facelets</groupId>
-    		<artifactId>jsf-facelets</artifactId>
-    		<version>1.1.14</version>
+    		<groupId>javax</groupId>
+    		<artifactId>javaee-api</artifactId>
+    		<version>6.0</version>
     		<scope>provided</scope>
     	</dependency>
     	<dependency>
-    		<groupId>br.com.fourlinux</groupId>
-    		<artifactId>javaone2011-ejb</artifactId>
-    		<version>1.0</version>
-    		<type>ejb</type>
+    		<groupId>com.sun.facelets</groupId>
+    		<artifactId>jsf-facelets</artifactId>
+    		<version>1.1.15</version>
+    		<scope>compile</scope>
     	</dependency>
     </dependencies>
+    
+    <repositories>
+    	<repository>
+    		<id>jboss-thirdparty-releases</id>
+    		<releases>
+    			<enabled>true</enabled>
+    			<updatePolicy>true</updatePolicy>
+    		</releases>
+    		<url>https://repository.jboss.org/nexus/content/groups/public-jboss</url>
+    	</repository>
+    </repositories>
+    
 </project>
