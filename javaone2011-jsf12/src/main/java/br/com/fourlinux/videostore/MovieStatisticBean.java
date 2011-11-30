@@ -6,12 +6,14 @@ import javax.faces.event.ActionEvent;
 
 
 public class MovieStatisticBean {
-	private Movie movie;
 	private float rate;
 	
 	private MovieBean movieBean;
 	
+	private Movie movie;
+	
 	public void rateMovie(ActionEvent event) {
+		
 		if (movie.getStatistics() != null) {
 			movie.setStatistics(new MovieStatistics());
 		}
