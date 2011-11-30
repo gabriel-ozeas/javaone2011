@@ -12,6 +12,8 @@ import br.com.fourlinux.videostore.ejb.ClientManagerSessionBean;
 public class ClientBean {
 	
 	private static final String ERROR_CLIENT_NOT_FOUND = "Cliente #%s não encontrado";
+	private static final String ERROR_PASSWORD_CONFIRM = "Desculpe, mas o password de confirmação não está coerente.";
+	private static final String ERROR_EMAIL_CONFIRM = "Desculpe, mas o e-mail de confirmação não está coerente.";
 	private static final String CLIENT_ADDED = "Cliente #%s adicionado com sucesso!";
 	
 	@EJB
@@ -44,12 +46,32 @@ public class ClientBean {
 	}
 	
 	public String save() {
+		boolean valid = true;
+		
 		if (client != null) {
-			clients.addClient(client);
+			if (!emailConfirm.equals(client.getEmail())) {
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ERROR_EMAIL_CONFIRM, null);
+				FacesContext.getCurrentInstance().addMessage(null, message);
+				valid = false;
+			}
+			
+			if (!passwordConfirm.equals(client.getPassword())) {
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ERROR_PASSWORD_CONFIRM, null);
+				FacesContext.getCurrentInstance().addMessage("client-form:email-confirm", message);
+				valid = false;
+			}
+			
+			if (valid) {
+				clients.addClient(client);
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, String.format(CLIENT_ADDED, client.getFirstName()), null);
+				FacesContext.getCurrentInstance().addMessage("client-form:password-confirm", message);
+				return "listAllClients";
+			} else {
+				return null;
+			}
 		}
-		FacesMessage message = new FacesMessage(null, String.format(CLIENT_ADDED, client.getFirstName()));
-		FacesContext.getCurrentInstance().addMessage(null, message);
 		return "listAllClients";
+		
 	}
 	
 	public Client getClient(Long id) {

@@ -42,7 +42,7 @@
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>listAllClients</from-outcome>
-			<to-view-id>/movie/list.xhtml</to-view-id>
+			<to-view-id>/client/list.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>

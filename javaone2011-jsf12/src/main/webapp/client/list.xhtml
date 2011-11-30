@@ -33,7 +33,12 @@
 					</f:facet>
 					<h:outputText value="#{client.email}" />
 				</h:column>
-	
+				
+				<h:column>
+					<h:commandLink action="#{clientBean.delete}" value="Excluir">
+						<f:setPropertyActionListener target="#{clientBean.client}" value="#{client}" />
+					</h:commandLink>
+				</h:column>
 			</h:dataTable>
 	
 			<h:panelGroup>
