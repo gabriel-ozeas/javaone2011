@@ -14,37 +14,36 @@
 				<h:panelGrid columns="3">
 					<h:outputText value="Nome:" />
 					<h:inputText id="firstName" value="#{clientBean.client.firstName}" required="true"/>
-					<h:message for="firstName" errorClass="message-form-error" infoClass="message-form-info"/>	
+					<h:message for="firstName" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>	
 				
 					<h:outputText value="Sobrenome:" />
 					<h:inputText id="lastName" value="#{clientBean.client.lastName}" required="true"/>
-					<h:message for="lastName" errorClass="message-form-error" infoClass="message-form-info"/>
+					<h:message for="lastName" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 					
 					<h:outputText value="Data de Nascimento: (dd/mm/aaaa)" />
 					<h:inputText id="data-nascimento" value="#{clientBean.client.birthday}" required="true" size="10">
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:inputText>
-					<h:message for="data-nascimento" errorClass="message-form-error" infoClass="message-form-info"/>
+					<h:message for="data-nascimento" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 					
 					<h:outputText value="E-mail:" />
 					<h:inputText id="email" value="#{clientBean.client.email}" required="true"/>
-					<h:message for="email" errorClass="message-form-error" infoClass="message-form-info" />
+					<h:message for="email" errorClass="message-form-error" infoClass="message-form-info"  showSummary="false"/>
 					
 					<h:outputText value="Confirme seu e-mail:" />
 					<h:inputText id="email-confirm" value="#{clientBean.emailConfirm}" required="true"/>
-					<h:message for="email-confirm" errorClass="message-form-error" infoClass="message-form-info" />
+					<h:message for="email-confirm" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 					
 					<h:outputText value="Password: " />
 					<h:inputSecret id="password" value="#{clientBean.client.password}" required="true" size="10">
 						<f:validateLength minimum="6" />
 					</h:inputSecret>
-					<h:message for="password" errorClass="message-form-error" infoClass="message-form-info" />
+					<h:message for="password" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 					
 					<h:outputText value="Confirme o Password:" />
 					<h:inputSecret id="password-confirm" value="#{clientBean.passwordConfirm}" required="true" size="10">
-						<f:validateLength minimum="6" />
 					</h:inputSecret>
-					<h:message for="password-confirm" errorClass="message-form-error" infoClass="message-form-info" />
+					<h:message for="password-confirm" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
 					
 				</h:panelGrid>
 				<h:panelGroup>

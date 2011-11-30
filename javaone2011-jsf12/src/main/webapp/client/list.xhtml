@@ -24,7 +24,9 @@
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
-					<h:outputText value="#{client.firstName} #{client.lastName}" />
+					<h:commandLink value="#{client.firstName} #{client.lastName}" action="#{clientBean.showClient}">
+						<f:setPropertyActionListener target="#{clientBean.client}" value="#{client}" />
+					</h:commandLink>
 				</h:column>
 	
 				<h:column>
@@ -32,6 +34,15 @@
 						<h:outputText value="E-mail" />
 					</f:facet>
 					<h:outputText value="#{client.email}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Data de Nascimento" />
+					</f:facet>
+					<h:outputText value="#{client.birthday}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/> 
+					</h:outputText>
 				</h:column>
 				
 				<h:column>

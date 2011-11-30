@@ -15,11 +15,12 @@ public class ClientBean {
 	private static final String ERROR_PASSWORD_CONFIRM = "Desculpe, mas o password de confirmação não está coerente.";
 	private static final String ERROR_EMAIL_CONFIRM = "Desculpe, mas o e-mail de confirmação não está coerente.";
 	private static final String CLIENT_ADDED = "Cliente #%s adicionado com sucesso!";
+	private static final String CLIENT_REMOVED = "Cliente %s removido com sucesso!";
 	
 	@EJB
 	private ClientManagerSessionBean clients;
 	
-	private Client client;
+	private Client client = new Client();
 	private Long clientId;
 	
 	private String emailConfirm;
@@ -64,7 +65,7 @@ public class ClientBean {
 			if (valid) {
 				clients.addClient(client);
 				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, String.format(CLIENT_ADDED, client.getFirstName()), null);
-				FacesContext.getCurrentInstance().addMessage("client-form:password-confirm", message);
+				FacesContext.getCurrentInstance().addMessage(null, message);
 				return "listAllClients";
 			} else {
 				return null;
@@ -72,6 +73,14 @@ public class ClientBean {
 		}
 		return "listAllClients";
 		
+	}
+	
+	public void delete() {
+		if (client != null) {
+			clients.removeClient(client.getId());
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, String.format(CLIENT_REMOVED, client.getFirstName()), null);
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
 	}
 	
 	public Client getClient(Long id) {
