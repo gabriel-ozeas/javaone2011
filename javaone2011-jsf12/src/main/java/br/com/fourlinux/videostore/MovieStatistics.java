@@ -1,6 +1,5 @@
 package br.com.fourlinux.videostore;
 
-import java.math.BigDecimal;
 
 public class MovieStatistics {
 	private float rate;
