@@ -40,25 +40,27 @@
                 </configuration>
             </plugin>
             
-            
+             
             <plugin>
             	<groupId>org.mortbay.jetty</groupId>
             	<artifactId>jetty-maven-plugin</artifactId>
             	<version>8.0.4.v20111024</version>
-            	<configuration>
-            		<contextPath>/</contextPath>
+                <configuration>
+                        <webAppConfig>
+                          <contextPath>/</contextPath>
+                        </webAppConfig>
             		<scanIntervalSeconds>10</scanIntervalSeconds>
             		 
             		<connectors>
 	            		<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-					 		<port>${jetty.port}</port>
-					 		<maxIdleTime>60000</maxIdleTime>
-					 	</connector>
-				 	</connectors>
+					<port>${jetty.port}</port>
+					<maxIdleTime>60000</maxIdleTime>
+				</connector>
+			</connectors>
 				 	 
             	</configuration>
             
-            	<!-- Bibliotecas JSF necessarias para o JETTY -->
+            	
             	<dependencies>
 					<dependency>
 			    		<groupId>javax.faces</groupId>
