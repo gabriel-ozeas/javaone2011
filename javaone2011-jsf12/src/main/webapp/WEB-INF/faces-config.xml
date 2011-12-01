@@ -8,7 +8,7 @@
 		<managed-bean-class>br.com.fourlinux.videostore.MovieBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	
+
 	<managed-bean>
 		<managed-bean-name>clientBean</managed-bean-name>
 		<managed-bean-class>br.com.fourlinux.videostore.ClientBean</managed-bean-class>
@@ -19,7 +19,7 @@
 		<navigation-case>
 			<from-outcome>addNewMovie</from-outcome>
 			<to-view-id>/movie/form.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -27,38 +27,51 @@
 		<navigation-case>
 			<from-outcome>listAllMovies</from-outcome>
 			<to-view-id>/movie/list.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>showMovie</from-outcome>
 			<to-view-id>/movie/show.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>listAllClients</from-outcome>
 			<to-view-id>/client/list.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>addNewClient</from-outcome>
 			<to-view-id>/client/form.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+	<converter>
+		<converter-id>br.com.fourlinux.videostore.converters.Actor</converter-id>
+		<converter-class>br.com.fourlinux.videostore.converters.ActorConverter</converter-class>
+	</converter>
+
+	<converter>
+		<converter-id>br.com.fourlinux.videostore.converters.Movie</converter-id>
+		<converter-class>br.com.fourlinux.videostore.converters.MovieConverter</converter-class>
+	</converter>
+
+	<converter>
+		<converter-for-class>java.lang.Enum</converter-for-class>
+		<converter-class>javax.faces.convert.EnumConverter</converter-class>
+	</converter>
+
 
 	<application>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
 	</application>
-	
-	
-
 </faces-config>

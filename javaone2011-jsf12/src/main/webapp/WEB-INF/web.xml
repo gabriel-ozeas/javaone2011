@@ -13,7 +13,7 @@
 		<servlet-name>FacesServlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<context-param>
 		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
 		<param-value>.xhtml</param-value>
@@ -23,9 +23,21 @@
 		<param-name>org.jboss.jbossfaces.JSF_CONFIG_NAME</param-name>
 		<param-value>Mojarra-1.2</param-value>
 	</context-param>
-	
+
 	<welcome-file-list>
 		<welcome-file>/faces/home.xhtml</welcome-file>
 	</welcome-file-list>
 	
+	<!-- 
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>FacesServlet</servlet-name>
+	</filter-mapping>
+	 -->
+
 </web-app>

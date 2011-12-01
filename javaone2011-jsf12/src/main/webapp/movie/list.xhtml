@@ -46,21 +46,7 @@
 						<f:facet name="header">
 							<h:outputText value="Gênero" />
 						</f:facet>
-						<h:outputText value="#{movie.genre}" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Total de Medias" />
-						</f:facet>
-						<h:outputText value="#{movie.totalMedias} unidades" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Disponível?" />
-						</f:facet>
-						<h:outputText value="#{movie.available}" />
+						<h:outputText value="#{movie.genre.value}" />
 					</h:column>
 
 					<h:column>

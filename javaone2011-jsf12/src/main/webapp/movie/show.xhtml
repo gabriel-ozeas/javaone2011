@@ -20,13 +20,16 @@
 					<dd><h:outputText value="#{movieController.movie.year}" name="year"/></dd>
 					
 					<dt><h:outputText value="Gênero: "/></dt>
-					<dd><h:outputText value="#{movieController.movie.genre}" name="genre"/></dd>
+					<dd><h:outputText value="#{movieController.movie.genre.value}" name="genre"/></dd>
 					
-					<dt><h:outputText value="Número de Medias em Estoque: "/></dt>
-					<dd><h:outputText value="#{movieController.movie.totalMedias}" name="totalMedias"/></dd>
-					
-					<dt><h:outputText value="Filme Disponível? "/></dt>
-					<dd><h:outputText value="#{movieController.movie.available}" name="available"/></dd>
+					<dt><h:outputText value="Estrelas: "/></dt>
+					<dd>
+						<ui:fragment rendered="#{movieController.movie.stars != null || movieController.movie.stars.size() > 0}">
+							<ui:repeat value="#{movieController.movie.stars}" var="actor">
+								#{actor.name},
+							</ui:repeat>
+						</ui:fragment>
+					</dd>
 				</dl>	
 			</div>
 		</ui:define>
