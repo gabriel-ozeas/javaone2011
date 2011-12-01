@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name="titulo">Registrando novo cliente</ui:define>
+		<ui:define name="conteudo">
+		
+			<h:messages globalOnly="true" errorClass="message-error" infoClass="message-info"/>
+		
+			<h:form id="client-form" styleClass="formulario">
+				<h:panelGrid columns="3">
+					<h:outputText value="Nome:" />
+					<h:inputText id="firstName" value="#{clientBean.client.firstName}" required="true"/>
+					<h:message for="firstName" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>	
+				
+					<h:outputText value="Sobrenome:" />
+					<h:inputText id="lastName" value="#{clientBean.client.lastName}" required="true"/>
+					<h:message for="lastName" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
+					
+					<h:outputText value="Data de Nascimento: (dd/mm/aaaa)" />
+					<h:inputText id="data-nascimento" value="#{clientBean.client.birthday}" required="true" size="10">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText>
+					<h:message for="data-nascimento" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
+					
+					<h:outputText value="E-mail:" />
+					<h:inputText id="email" value="#{clientBean.client.email}" required="true"/>
+					<h:message for="email" errorClass="message-form-error" infoClass="message-form-info"  showSummary="false"/>
+					
+					<h:outputText value="Confirme seu e-mail:" />
+					<h:inputText id="email-confirm" value="#{clientBean.emailConfirm}" required="true"/>
+					<h:message for="email-confirm" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
+					
+					<h:outputText value="Password: " />
+					<h:inputSecret id="password" value="#{clientBean.client.password}" required="true" size="10">
+						<f:validateLength minimum="6" />
+					</h:inputSecret>
+					<h:message for="password" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
+					
+					<h:outputText value="Confirme o Password:" />
+					<h:inputSecret id="password-confirm" value="#{clientBean.passwordConfirm}" required="true" size="10">
+					</h:inputSecret>
+					<h:message for="password-confirm" errorClass="message-form-error" infoClass="message-form-info" showSummary="false"/>
+					
+				</h:panelGrid>
+				<h:panelGroup>
+					<h:commandButton action="#{clientBean.save}" value="Registrar"/>
+					<h:commandButton action="listAllClients" value="Cancelar" immediate="true"/>
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

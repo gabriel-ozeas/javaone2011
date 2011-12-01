@@ -4,11 +4,15 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.fourlinux.videostore.domain.Client;
 import br.com.fourlinux.videostore.ejb.ClientManagerSessionBean;
 
+@ManagedBean
+@RequestScoped
 public class ClientBean {
 	
 	private static final String ERROR_CLIENT_NOT_FOUND = "Cliente #%s não encontrado";
