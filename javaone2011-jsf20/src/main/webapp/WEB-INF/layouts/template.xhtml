@@ -3,12 +3,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-	<head>
+	<h:head>
 		<title><ui:insert name="titulo">4Linux JavaOne 2011 - JSF 1.2</ui:insert></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/reset.css" type="text/css"/>
-		<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/estilo.css" type="text/css"/>
-	</head>
+		
+		<h:outputStylesheet name="reset.css" library="css" />
+		<h:outputStylesheet name="estilo.css" library="css" />
+	</h:head>
 	
 	<body>
 		<div id="topo" class="box-full-page">
