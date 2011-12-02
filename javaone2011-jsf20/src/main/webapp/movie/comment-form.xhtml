@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition>
+		<h:form id="comment-form">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="E-mail" for="comment-email"/>
+				<h:inputText value="#{commentBean.email}" />				
+				
+				<h:outputLabel value="Comentário" for="comment-textarea"/>				
+				<h:intputTextArea id="comment-textarea" value="#{commentBean.comment}"/>
+			</h:panelGrid>
+			<h:panelGroup>
+				<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário" />
+			</h:panelGroup>			
+		</h:form>
+	</ui:composition>
+</html>

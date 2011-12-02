@@ -13,7 +13,7 @@
 	<ui:composition template="/WEB-INF/layouts/template.xhtml">
 		<ui:define name = "titulo">#{userBean.user.firstName} #{userBean.user.lastName}</ui:define>
 		<ui:define name = "conteudo">
-			<h:form >
+			<h:form id="back-form">
 				<h:commandLink action="/user/list.xhtml?faces-redirect=true" value="Voltar" />
 			</h:form>
 			
@@ -32,11 +32,11 @@
 					<dt><h:outputText value="Commentários: "/></dt>					
 					<dd>
 						<div id="movie-comments">
-							<h:form>
+							<h:form id="movie-form">
 								<ui:repeat var="comment" value="#{commentService.getAllCommentsByUser(userBean.user.id)}">
 									<div class="comment">
 										<p>
-											<small>Filme: <b> <h:commandLink action="#{movieController.showMovie}" value="#{comment.movie.title}" >
+											<small>Filme: <b> <h:commandLink action="#{movieController.showMovie}" value="#{comment.movie.title}" immediate="true">
 													<f:setPropertyActionListener target="#{movieController.movie}" value="#{comment.movie}" />
 												</h:commandLink>
 											</b>, às <b> <h:outputText value="#{comment.date}">

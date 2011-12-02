@@ -33,6 +33,12 @@
 					
 					<dt><h:outputText value="Commentários: "/></dt>
 					<dd>
+						<div id="add-comment">
+							<ui:fragment rendered="#{commentBean.commentFormDisplayed}">
+								<ui:include src="/movie/comment-form.xhtml" />
+							</ui:fragment>
+						</div>
+					
 						<div id="movie-comments">
 							<ui:repeat var="comment" value="#{flash.comments}">
 								<div class="comment">

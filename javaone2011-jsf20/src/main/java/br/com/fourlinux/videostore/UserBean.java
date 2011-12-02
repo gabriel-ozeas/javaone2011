@@ -37,11 +37,11 @@ public class UserBean {
 	public String showUser() {
 		user = getUser(userId);
 		if (user != null) {
-			return "showUser";
+			return "/user/show?faces-redirect=true";
 		} else {
 			FacesMessage message = new FacesMessage(null, String.format(ERROR_CLIENT_NOT_FOUND, user.getId()));
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			return "listAllUsers";
+			return "/user/list?faces-redirect=true";
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class UserBean {
 		user = new User();
 		emailConfirm = null;
 		passwordConfirm = null;
-		return "addNewUser";
+		return "/user/form?faces-redirect=true";
 	}
 	
 	public String save() {
@@ -72,12 +72,12 @@ public class UserBean {
 				users.addUser(user);
 				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, String.format(USER_ADDED, user.getFirstName()), null);
 				FacesContext.getCurrentInstance().addMessage(null, message);
-				return "listAllUsers";
+				return "/user/list?faces-redirect.xhtml";
 			} else {
 				return null;
 			}
 		}
-		return "listAllUsers";
+		return "/user/list?faces-redirect.xhtml";
 		
 	}
 	
