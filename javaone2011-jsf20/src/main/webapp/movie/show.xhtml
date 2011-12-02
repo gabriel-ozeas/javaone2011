@@ -8,25 +8,52 @@
 		<ui:define name = "titulo">#{movieController.movie.title}</ui:define>
 		<ui:define name = "conteudo">
 			<h:form >
-				<h:commandLink action="/movie/list?faces-redirect=true" value="Voltar" />
+				<h:commandLink action="/movie/list.xhtml?faces-redirect=true" value="Voltar" />
 			</h:form>
 			
 			<div id="info" class="formulario">
 				<dl class="descricao">
 					<dt><h:outputText value="Diretor: "/></dt>
-					<dd><h:outputText value="#{movieController.movie.director}" name="director"/></dd>
+					<dd><h:outputText value="#{flash.movie.director}" name="director"/></dd>
 					
 					<dt><h:outputText value="Ano de Lançamento: "/></dt>
-					<dd><h:outputText value="#{movieController.movie.year}" name="year"/></dd>
+					<dd><h:outputText value="#{flash.movie.year}" name="year"/></dd>
 					
 					<dt><h:outputText value="Gênero: "/></dt>
-					<dd><h:outputText value="#{movieController.movie.genre}" name="genre"/></dd>
+					<dd><h:outputText value="#{flash.movie.genre.value}" name="genre"/></dd>
 					
-					<dt><h:outputText value="Número de Medias em Estoque: "/></dt>
-					<dd><h:outputText value="#{movieController.movie.totalMedias}" name="totalMedias"/></dd>
+					<dt><h:outputText value="Estrelas: "/></dt>
+					<dd>
+						<ui:fragment rendered="#{flash.movie.stars != null || flash.movie.stars.size() > 0}">
+							<ui:repeat value="#{flash.movie.stars}" var="actor">
+								#{actor.name},
+							</ui:repeat>
+						</ui:fragment>
+					</dd>
 					
-					<dt><h:outputText value="Filme Disponível? "/></dt>
-					<dd><h:outputText value="#{movieController.movie.available}" name="available"/></dd>
+					<dt><h:outputText value="Commentários: "/></dt>
+					<dd>
+						<div id="movie-comments">
+							<ui:repeat var="comment" value="#{flash.comments}">
+								<div class="comment">
+									<div>
+										<small>De: <b>
+											<!-- Usando GET para trocar de página -->
+											<h:link outcome="showUser" value="#{comment.user.firstName} #{comment.user.lastName}">
+												<f:param name="userId" value="#{comment.user.id}"/>
+											</h:link> </b>, às 
+											<b>
+												<h:outputText value="#{comment.date}">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</h:outputText>
+											</b>
+										</small>
+									</div>
+									<div>#{comment.comment}</div>
+								</div>
+							</ui:repeat>
+						</div>
+					</dd>
 				</dl>	
 			</div>
 		</ui:define>

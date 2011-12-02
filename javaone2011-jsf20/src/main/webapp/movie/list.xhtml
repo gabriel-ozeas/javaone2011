@@ -15,7 +15,9 @@
 				<h:panelGroup>
 					<h:commandLink action="#{movieController.addNew}" value="Adicionar Novo Filme" />
 				</h:panelGroup>
-				<h:dataTable value="#{movieController.movies}" var="movie"
+				
+				<!-- Using the EJB 3 stateless session bean to retrieve all the movies. -->
+				<h:dataTable value="#{movieService.allMovies}" var="movie"
 					styleClass="tabela" headerClass="header" rowClasses="odd,even">
 					<h:column>
 						<f:facet name="header">
@@ -26,6 +28,7 @@
 							<f:setPropertyActionListener target="#{movieController.movie}"
 								value="#{movie}" />
 						</h:commandLink>
+						
 					</h:column>
 
 					<h:column>
@@ -46,21 +49,7 @@
 						<f:facet name="header">
 							<h:outputText value="Gênero" />
 						</f:facet>
-						<h:outputText value="#{movie.genre}" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Total de Medias" />
-						</f:facet>
-						<h:outputText value="#{movie.totalMedias} unidades" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Disponível?" />
-						</f:facet>
-						<h:outputText value="#{movie.available}" />
+						<h:outputText value="#{movie.genre.value}" />
 					</h:column>
 
 					<h:column>

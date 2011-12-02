@@ -19,6 +19,7 @@ public class ClientManagerSessionBean {
 	@PersistenceContext(unitName="movie-persistence")
 	private EntityManager entityManager;
 	
+	@SuppressWarnings("unchecked")
 	public List<Client> getAllClients() {
 		Query query = entityManager.createQuery("SELECT c FROM Client c");
 		return query.getResultList();

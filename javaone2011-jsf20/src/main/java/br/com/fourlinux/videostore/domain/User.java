@@ -1,25 +1,37 @@
 package br.com.fourlinux.videostore.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CLIENTS")
-public class Client implements Serializable {
+@Table(name = "CLIENTS")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private Date birthday;
 	private String email;
 	private String password;
-	
-	public Client() {}
-	public Client(String firstName, String lastName, String email) {
+
+	private List<Movie> favoriteMovies = new ArrayList<Movie>();
+	private List<Comment> comments = new ArrayList<Comment>();
+
+	public User() {
+	}
+
+	public User(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -74,6 +86,25 @@ public class Client implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "FAVORITE_MOVIES", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID") })
+	public List<Movie> getFavoriteMovies() {
+		return favoriteMovies;
+	}
+
+	public void setFavoriteMovies(List<Movie> favoriteMovies) {
+		this.favoriteMovies = favoriteMovies;
+	}
+
+	@OneToMany(mappedBy = "user")
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 }

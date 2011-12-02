@@ -1,4 +1,4 @@
-package br.com.fourlinux.videostore;
+package br.com.fourlinux.videostore.domain;
 
 
 public class MovieStatistics {

@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "MOVIES")
@@ -31,8 +31,10 @@ public class Movie implements Serializable {
 	private String moviePicturePath;
 
 	private List<Actor> stars = new ArrayList<Actor>();
-	
+
 	private MovieStatistics statistics = new MovieStatistics();
+
+	private List<Comment> comments = new ArrayList<Comment>();
 
 	public Movie() {
 	}
@@ -94,8 +96,7 @@ public class Movie implements Serializable {
 		this.moviePicturePath = moviePicturePath;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {
-			CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
 	@JoinTable(name = "MOVIE_STARS", joinColumns = { @JoinColumn(name = "MOVIE_ID") }, inverseJoinColumns = { @JoinColumn(name = "ACTOR_ID") })
 	public List<Actor> getStars() {
 		return stars;
@@ -112,6 +113,15 @@ public class Movie implements Serializable {
 
 	public void setStatistics(MovieStatistics statistics) {
 		this.statistics = statistics;
+	}
+
+	@OneToMany(mappedBy = "movie")
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

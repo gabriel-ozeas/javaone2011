@@ -20,7 +20,7 @@
 
 
 	<build>
-		<finalName>javaone2011-jsf20.war</finalName>
+		<finalName>javaone2011-jsf20</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

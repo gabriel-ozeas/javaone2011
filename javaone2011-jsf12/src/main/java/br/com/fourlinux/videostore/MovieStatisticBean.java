@@ -4,6 +4,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import br.com.fourlinux.videostore.domain.Movie;
+import br.com.fourlinux.videostore.domain.MovieStatistics;
+
 
 public class MovieStatisticBean {
 	private float rate;

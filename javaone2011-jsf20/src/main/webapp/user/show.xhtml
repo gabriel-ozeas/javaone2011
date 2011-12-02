@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<f:metadata>
+		<f:viewParam name="userId" value="#{userBean.user}">
+			<f:converter converterId="br.com.fourlinux.videostore.converters.User"/>
+		</f:viewParam>
+	</f:metadata>
+
+	<ui:composition template="/WEB-INF/layouts/template.xhtml">
+		<ui:define name = "titulo">#{userBean.user.firstName} #{userBean.user.lastName}</ui:define>
+		<ui:define name = "conteudo">
+			<h:form >
+				<h:commandLink action="/user/list.xhtml?faces-redirect=true" value="Voltar" />
+			</h:form>
+			
+			<div id="info" class="formulario">
+				<dl class="descricao">
+					<dt><h:outputText value="Email: "/></dt>
+					<dd><h:outputText value="#{userBean.user.email}" name="email"/></dd>
+					
+					<dt><h:outputText value="Data de Nascimento: "/></dt>
+					<dd>
+						<h:outputText value="#{userBean.user.birthday}" name="birthday">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</dd>
+					
+					<dt><h:outputText value="Commentários: "/></dt>					
+					<dd>
+						<div id="movie-comments">
+							<h:form>
+								<ui:repeat var="comment" value="#{commentService.getAllCommentsByUser(userBean.user.id)}">
+									<div class="comment">
+										<p>
+											<small>Filme: <b> <h:commandLink action="#{movieController.showMovie}" value="#{comment.movie.title}" >
+													<f:setPropertyActionListener target="#{movieController.movie}" value="#{comment.movie}" />
+												</h:commandLink>
+											</b>, às <b> <h:outputText value="#{comment.date}">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</h:outputText>
+											</b></small>
+										</p>
+										<p>#{comment.comment}</p>
+									</div>
+								</ui:repeat>
+							</h:form>
+						</div>
+					</dd>
+				</dl>	
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

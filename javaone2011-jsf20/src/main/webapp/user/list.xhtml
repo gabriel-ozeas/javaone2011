@@ -6,55 +6,57 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/WEB-INF/layouts/template.xhtml">
-	<ui:define name="titulo">Lista de clientes</ui:define>
+	<ui:define name="titulo">Lista de usuários</ui:define>
 	<ui:define name="conteudo">
 		<h:messages errorClass="message-error" infoClass="message-info"
 			globalOnly="true"></h:messages>
 		
 		<h:form id="client-list-form">
 			<h:panelGroup>
-				<h:commandLink action="#{clientBean.addNew}"
-					value="Registrar Novo Cliente" />
+				<h:commandLink action="#{userBean.addNew}"
+					value="Registrar Novo Usuário" />
 			</h:panelGroup>
 
-			<h:dataTable value="#{clientManagerService.allClients}" var="client"
+			<h:dataTable value="#{userManagerService.allUsers}" var="user"
 				styleClass="tabela" headerClass="header" rowClasses="odd,even">
 	
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
-					<h:commandLink value="#{client.firstName} #{client.lastName}" action="#{clientBean.showClient}">
-						<f:setPropertyActionListener target="#{clientBean.client}" value="#{client}" />
-					</h:commandLink>
+					
+					<h:link outcome="showUser" value="#{user.firstName} #{user.lastName}">
+						<f:param name="userId" value="#{user.id}"/>		
+					</h:link>
+					
 				</h:column>
 	
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="E-mail" />
 					</f:facet>
-					<h:outputText value="#{client.email}" />
+					<h:outputText value="#{user.email}" />
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Data de Nascimento" />
 					</f:facet>
-					<h:outputText value="#{client.birthday}">
+					<h:outputText value="#{user.birthday}">
 						<f:convertDateTime pattern="dd/MM/yyyy"/> 
 					</h:outputText>
 				</h:column>
 				
 				<h:column>
-					<h:commandLink action="#{clientBean.delete}" value="Excluir">
-						<f:setPropertyActionListener target="#{clientBean.client}" value="#{client}" />
+					<h:commandLink action="#{userBean.delete}" value="Excluir">
+						<f:setPropertyActionListener target="#{userBean.user}" value="#{user}" />
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 	
 			<h:panelGroup>
-				<h:commandLink action="#{clientBean.addNew}"
-					value="Registrar Novo Cliente" />
+				<h:commandLink action="#{userBean.addNew}"
+					value="Registrar Novo Usuário" />
 			</h:panelGroup>
 		</h:form>
 	</ui:define>
