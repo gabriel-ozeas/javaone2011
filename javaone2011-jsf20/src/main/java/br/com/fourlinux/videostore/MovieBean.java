@@ -1,12 +1,13 @@
 package br.com.fourlinux.videostore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.model.SelectItem;
@@ -14,7 +15,6 @@ import javax.faces.model.SelectItem;
 import br.com.fourlinux.videostore.domain.Actor;
 import br.com.fourlinux.videostore.domain.Genre;
 import br.com.fourlinux.videostore.domain.Movie;
-import br.com.fourlinux.videostore.ejb.CommentsSessionBean;
 import br.com.fourlinux.videostore.ejb.MovieManagerSessionBean;
 
 /**
@@ -24,16 +24,13 @@ import br.com.fourlinux.videostore.ejb.MovieManagerSessionBean;
  * 
  */
 @ManagedBean(name = "movieController")
-@RequestScoped
-public class MovieBean {
+@SessionScoped
+public class MovieBean implements Serializable {
 	private static final String DELETE_MESSAGE = "Filme %s deletado com sucesso!";
 	private static final String NO_MOVIE_SELECTED = "Nenhum filme foi selecionado!";
 
 	@EJB
 	private MovieManagerSessionBean movies;
-	@EJB
-	private CommentsSessionBean comments;
-	
 	private Movie movie;
 
 	public MovieBean() {

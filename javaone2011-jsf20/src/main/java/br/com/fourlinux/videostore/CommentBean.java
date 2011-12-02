@@ -1,10 +1,14 @@
 package br.com.fourlinux.videostore;
 
+import java.io.Serializable;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import br.com.fourlinux.videostore.domain.Comment;
 import br.com.fourlinux.videostore.domain.Movie;
@@ -15,7 +19,7 @@ import br.com.fourlinux.videostore.ejb.UserManagerSessionBean;
 
 @ManagedBean
 @ViewScoped
-public class CommentBean {
+public class CommentBean implements Serializable {
 
 	@EJB
 	private MovieManagerSessionBean movies;
@@ -24,7 +28,12 @@ public class CommentBean {
 	@EJB
 	private CommentsSessionBean comments;
 
+	@Size(min = 2, max = 300)
 	private String comment;
+
+	@Size(min = 3, message = "Por favor, entre com um e-mail válido.")
+	@Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.\\w+", 
+		message = "Por favor, entre co um e-mail válido.")
 	private String email;
 	private Long movieId;
 
@@ -38,7 +47,7 @@ public class CommentBean {
 			if (movie != null) {
 				Comment newComment = new Comment(comment, user, movie);
 				comments.addComment(newComment);
-				
+
 				hideForm();
 			} else {
 				FacesMessage msg = new FacesMessage(
@@ -56,7 +65,7 @@ public class CommentBean {
 
 	public void showForm(Long movieId) {
 		this.commentFormDisplayed = true;
-		this.movieId = movieId; 
+		this.movieId = movieId;
 	}
 
 	public void hideForm() {

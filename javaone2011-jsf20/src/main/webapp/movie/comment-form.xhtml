@@ -16,8 +16,10 @@
 				<h:commandButton action="#{commentBean.hideForm}" value="Cancelar">
 					<f:ajax event="action" execute="@this" render="@form" immediate="true"/>
 				</h:commandButton>
-				<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário">
-					<f:ajax event="action" execute="@form" render="@form :comment-box"/>
+				<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário" >
+					<f:ajax event="action" execute="@form" render="@form :comment-box">
+						<f:param name="movieId" value="#{movieController.movie.id}"/>
+					</f:ajax>
 				</h:commandButton>
 			</h:panelGroup>			
 	</ui:composition>

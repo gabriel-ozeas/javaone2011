@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<f:metadata>
-		<f:viewParam name="movieId" value="#{movieController.movie}">
+		<f:viewParam name="movieId" value="#{movieController.movie}" required="true">
 			<f:converter converterId="br.com.fourlinux.videostore.converters.Movie"/>
 		</f:viewParam>
 	</f:metadata>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain>
+   <applications />
+   <resources>
+      <jdbc-connection-pool name="DerbyPool" datasource-classname="org.apache.derby.jdbc.EmbeddedXADataSource" res-type="javax.sql.XADataSource">
+      	<property value="${com.sun.aas.instanceRoot}/lib/databases/default" name="databaseName" />
+       	<property value=";create=true" name="connectionAttributes" />
+      </jdbc-connection-pool>
+   </resources>
+</domain>
