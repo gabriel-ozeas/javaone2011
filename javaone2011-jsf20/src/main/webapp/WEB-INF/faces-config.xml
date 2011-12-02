@@ -8,5 +8,14 @@
 			<to-view-id>/user/show.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-	</navigation-rule> 	
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>showMovie</from-outcome>
+			<to-view-id>/movie/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	 	
 </faces-config>

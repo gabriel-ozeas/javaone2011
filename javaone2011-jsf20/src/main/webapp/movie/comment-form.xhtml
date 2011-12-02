@@ -5,17 +5,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition>
-		<h:form id="comment-form">
 			<h:panelGrid columns="2">
 				<h:outputLabel value="E-mail" for="comment-email"/>
-				<h:inputText value="#{commentBean.email}" />				
+				<h:inputText value="#{commentBean.email}" id="comment-email"/>				
 				
-				<h:outputLabel value="Comentário" for="comment-textarea"/>				
-				<h:intputTextArea id="comment-textarea" value="#{commentBean.comment}"/>
+				<h:outputLabel value="Comentário" for="comment-textarea" />				
+				<h:inputTextarea id="comment-textarea" value="#{commentBean.comment}" cols="40" rows="7"/>
 			</h:panelGrid>
 			<h:panelGroup>
-				<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário" />
+				<h:commandButton action="#{commentBean.hideForm}" value="Cancelar">
+					<f:ajax event="action" execute="@this" render="@form" immediate="true"/>
+				</h:commandButton>
+				<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário">
+					<f:ajax event="action" execute="@form" render="@form :comment-box"/>
+				</h:commandButton>
 			</h:panelGroup>			
-		</h:form>
 	</ui:composition>
 </html>

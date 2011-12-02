@@ -41,4 +41,10 @@ public class UserManagerSessionBean {
 		}
 		return null;
 	}
+	
+	public User getUserByEmail(String email) {
+		Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email");
+		query.setParameter("email", email);
+		return (User) query.getSingleResult();
+	}
 }

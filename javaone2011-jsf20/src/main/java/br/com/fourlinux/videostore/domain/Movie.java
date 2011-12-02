@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -115,7 +116,8 @@ public class Movie implements Serializable {
 		this.statistics = statistics;
 	}
 
-	@OneToMany(mappedBy = "movie")
+	@OneToMany(mappedBy = "movie", cascade = {CascadeType.REMOVE})
+	@OrderBy("date DESC")
 	public List<Comment> getComments() {
 		return comments;
 	}

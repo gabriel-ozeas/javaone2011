@@ -14,8 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "COMMENTS")
 @NamedQueries({
-	@NamedQuery(name = "findAllCommentsByMovie", query = "SELECT m.comments FROM Movie m WHERE m.id = :id"),
-	@NamedQuery(name = "findAllCommentsByUser", query = "SELECT u.comments FROM User u WHERE u.id = :id")
+	@NamedQuery(name = "findAllCommentsByMovie", query = "SELECT comment FROM Movie m JOIN m.comments comment WHERE m.id = :id ORDER BY comment.date DESC"),
+	@NamedQuery(name = "findAllCommentsByUser", query = "SELECT comment FROM User u JOIN u.comments comment WHERE u.id = :id ORDER BY comment.date DESC")
 })
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;

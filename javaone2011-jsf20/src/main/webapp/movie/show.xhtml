@@ -4,6 +4,13 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
+	<f:metadata>
+		<f:viewParam name="movieId" value="#{movieController.movie}">
+			<f:converter converterId="br.com.fourlinux.videostore.converters.Movie"/>
+		</f:viewParam>
+	</f:metadata>
+
+
 	<ui:composition template="/WEB-INF/layouts/template.xhtml">
 		<ui:define name = "titulo">#{movieController.movie.title}</ui:define>
 		<ui:define name = "conteudo">
@@ -14,18 +21,18 @@
 			<div id="info" class="formulario">
 				<dl class="descricao">
 					<dt><h:outputText value="Diretor: "/></dt>
-					<dd><h:outputText value="#{flash.movie.director}" name="director"/></dd>
+					<dd><h:outputText value="#{movieController.movie.director}" name="director"/></dd>
 					
 					<dt><h:outputText value="Ano de Lançamento: "/></dt>
-					<dd><h:outputText value="#{flash.movie.year}" name="year"/></dd>
+					<dd><h:outputText value="#{movieController.movie.year}" name="year"/></dd>
 					
 					<dt><h:outputText value="Gênero: "/></dt>
-					<dd><h:outputText value="#{flash.movie.genre.value}" name="genre"/></dd>
+					<dd><h:outputText value="#{movieController.movie.genre.value}" name="genre"/></dd>
 					
 					<dt><h:outputText value="Estrelas: "/></dt>
 					<dd>
-						<ui:fragment rendered="#{flash.movie.stars != null || flash.movie.stars.size() > 0}">
-							<ui:repeat value="#{flash.movie.stars}" var="actor">
+						<ui:fragment rendered="#{movieController.movie.stars != null || movieController.movie.stars.size() > 0}">
+							<ui:repeat value="#{movieController.movie.stars}" var="actor">
 								#{actor.name},
 							</ui:repeat>
 						</ui:fragment>
@@ -33,31 +40,47 @@
 					
 					<dt><h:outputText value="Commentários: "/></dt>
 					<dd>
-						<div id="add-comment">
-							<ui:fragment rendered="#{commentBean.commentFormDisplayed}">
-								<ui:include src="/movie/comment-form.xhtml" />
-							</ui:fragment>
-						</div>
-					
 						<div id="movie-comments">
-							<ui:repeat var="comment" value="#{flash.comments}">
-								<div class="comment">
-									<div>
-										<small>De: <b>
-											<!-- Usando GET para trocar de página -->
-											<h:link outcome="showUser" value="#{comment.user.firstName} #{comment.user.lastName}">
-												<f:param name="userId" value="#{comment.user.id}"/>
-											</h:link> </b>, às 
-											<b>
-												<h:outputText value="#{comment.date}">
-													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-												</h:outputText>
-											</b>
-										</small>
-									</div>
-									<div>#{comment.comment}</div>
+							<h:form id="comment-form">
+								<h:messages errorClass="message-form-error" infoClass="message-form-info"/>
+							
+								<!-- 
+									Link que realiza uma requisição ajax no submit
+								 -->
+								<h:commandLink action="#{commentBean.showForm(movieController.movie.id)}" value="Comentar" rendered="#{!commentBean.commentFormDisplayed}" styleClass="comment-link">
+									<f:ajax event="action" execute="@this" render="@form" />
+								</h:commandLink>
+								
+								<div id="add-comment">
+									<ui:fragment rendered="#{commentBean.commentFormDisplayed}" id="comment-fragment">
+										<ui:include src="/movie/comment-form.xhtml" />
+									</ui:fragment>
 								</div>
-							</ui:repeat>
+							</h:form>
+							
+							
+							<div id="comment-list">	
+							<h:panelGroup id="comment-box">
+								<ui:repeat var="comment" value="#{commentService.getAllCommentsByMovie(movieController.movie.id)}">
+									<div class="comment">
+										<div>
+											<small>De: <b>
+												<!-- Usando GET para trocar de página -->
+												<h:link outcome="showUser" value="#{comment.user.firstName} #{comment.user.lastName}">
+													<f:param name="userId" value="#{comment.user.id}"/>
+												</h:link> </b>, às 
+												<b>
+													<h:outputText value="#{comment.date}">
+														<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+													</h:outputText>
+												</b>
+											</small>
+										</div>
+										<p>#{comment.comment}</p>
+									</div>
+								</ui:repeat>
+							</h:panelGroup>
+							</div>
 						</div>
 					</dd>
 				</dl>	

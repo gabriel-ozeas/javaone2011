@@ -36,9 +36,9 @@
 								<ui:repeat var="comment" value="#{commentService.getAllCommentsByUser(userBean.user.id)}">
 									<div class="comment">
 										<p>
-											<small>Filme: <b> <h:commandLink action="#{movieController.showMovie}" value="#{comment.movie.title}" immediate="true">
-													<f:setPropertyActionListener target="#{movieController.movie}" value="#{comment.movie}" />
-												</h:commandLink>
+											<small>Filme: <b> <h:link outcome="showMovie" value="#{comment.movie.title}">
+													<f:param name="movieId" value="#{comment.movie.id}"></f:param>
+												</h:link>
 											</b>, às <b> <h:outputText value="#{comment.date}">
 													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 												</h:outputText>

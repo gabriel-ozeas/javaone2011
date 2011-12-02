@@ -22,7 +22,7 @@ public class CommentsSessionBean {
 		entityManager.persist(comment);
 	}
 	
-	public void removeCommen(Comment comment) {
+	public void removeComment(Comment comment) {
 		entityManager.remove(comment);
 	}
 	

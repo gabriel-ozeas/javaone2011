@@ -23,12 +23,9 @@
 						<f:facet name="header">
 							<h:outputText value="Titulo" />
 						</f:facet>
-						<h:commandLink action="#{movieController.showMovie}"
-							value="#{movie.title}">
-							<f:setPropertyActionListener target="#{movieController.movie}"
-								value="#{movie}" />
-						</h:commandLink>
-						
+						<h:link outcome="showMovie" value="#{movie.title}">
+							<f:param name="movieId" value="#{movie.id}" />
+						</h:link>
 					</h:column>
 
 					<h:column>

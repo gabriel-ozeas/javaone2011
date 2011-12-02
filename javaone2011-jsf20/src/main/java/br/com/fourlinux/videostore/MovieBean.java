@@ -78,8 +78,6 @@ public class MovieBean {
 			Flash flashScope = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 			flashScope.put("movie", movie);
 			
-			flashScope.put("comments", comments.getAllCommentsByMovie(movie.getId()));
-
 			return "/movie/show?faces-redirect=true";
 		} else {
 			FacesMessage errorMessage = new FacesMessage(
