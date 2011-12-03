@@ -7,7 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.model.SelectItem;
@@ -24,7 +24,7 @@ import br.com.fourlinux.videostore.ejb.MovieManagerSessionBean;
  * 
  */
 @ManagedBean(name = "movieController")
-@SessionScoped
+@ViewScoped
 public class MovieBean implements Serializable {
 	private static final String DELETE_MESSAGE = "Filme %s deletado com sucesso!";
 	private static final String NO_MOVIE_SELECTED = "Nenhum filme foi selecionado!";

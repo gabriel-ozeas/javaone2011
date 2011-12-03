@@ -41,7 +41,12 @@ public class MovieConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		Movie movie = (Movie) value;
-		return movie.getId().toString();
+		if (movie == null) {
+			return null;
+		} else {
+			return movie.getId().toString();
+		}
+		
 	}
 
 }

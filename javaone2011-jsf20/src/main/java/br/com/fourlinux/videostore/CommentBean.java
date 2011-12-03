@@ -32,8 +32,8 @@ public class CommentBean implements Serializable {
 	private String comment;
 
 	@Size(min = 3, message = "Por favor, entre com um e-mail válido.")
-	@Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.\\w+", 
-		message = "Por favor, entre co um e-mail válido.")
+	@Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", 
+		message = "Por favor, entre com um e-mail válido.")
 	private String email;
 	private Long movieId;
 

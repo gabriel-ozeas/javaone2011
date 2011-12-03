@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:moviecomp="http://java.sun.com/jsf/composite/moviecomp">
 
 	<f:metadata>
-		<f:viewParam name="movieId" value="#{movieController.movie}" required="true">
+		<f:viewParam name="movieId" value="#{movieController.movie}">
 			<f:converter converterId="br.com.fourlinux.videostore.converters.Movie"/>
 		</f:viewParam>
 	</f:metadata>
@@ -14,9 +15,14 @@
 	<ui:composition template="/WEB-INF/layouts/template.xhtml">
 		<ui:define name = "titulo">#{movieController.movie.title}</ui:define>
 		<ui:define name = "conteudo">
-			<h:form >
-				<h:commandLink action="/movie/list.xhtml?faces-redirect=true" value="Voltar" />
+			<h:form>
+				<h:commandLink action="/movie/list.xhtml?faces-redirect=true" value="Ir para lista de filmes" class="voltar-link"/>
 			</h:form>
+			
+			<div id="briefing">
+				<moviecomp:moviebox title="#{movieController.movie.title}" movieId="#{movieController.movie.id}"
+					director="#{movieController.movie.director}" genre="#{movieController.movie.genre}" imagePath="#{movieController.movie.moviePicturePath}"/>
+			</div>
 			
 			<div id="info" class="formulario">
 				<dl class="descricao">
@@ -51,11 +57,27 @@
 									<f:ajax event="action" execute="@this" render="@form" />
 								</h:commandLink>
 								
-								<div id="add-comment">
-									<ui:fragment rendered="#{commentBean.commentFormDisplayed}" id="comment-fragment">
-										<ui:include src="/movie/comment-form.xhtml" />
-									</ui:fragment>
-								</div>
+								<h:panelGroup id="add-comment" rendered="#{commentBean.commentFormDisplayed}">									 
+									<h:messages errorClass="message-form-error" infoClass="message-form-info"/>
+									
+									<dl>
+										<dt><h:outputLabel value="E-mail" for="comment-email"/></dt>
+										<dd><h:inputText value="#{commentBean.email}" id="comment-email"/></dd>
+										
+										<dt><h:outputLabel value="Comentário" for="comment-textarea" /></dt>
+										<dd>
+											<h:inputTextarea id="comment-textarea" value="#{commentBean.comment}" cols="60" rows="7"/>
+										</dd>
+									</dl>
+									<h:panelGroup>
+										<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário" >
+											<f:ajax event="action" execute="@form" render="@form :comment-box" />
+										</h:commandButton>
+										<h:commandButton action="#{commentBean.hideForm}" value="Cancelar" immediate="true">
+											<f:ajax event="action" render="@form" />
+										</h:commandButton>
+									</h:panelGroup>  
+								</h:panelGroup>
 							</h:form>
 							
 							

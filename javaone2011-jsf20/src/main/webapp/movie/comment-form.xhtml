@@ -5,6 +5,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition>
+		<h:form id="comment-form">
+			<h:messages errorClass="message-form-error" infoClass="message-form-info"/>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="E-mail" for="comment-email"/>
 				<h:inputText value="#{commentBean.email}" id="comment-email"/>				
@@ -13,7 +15,7 @@
 				<h:inputTextarea id="comment-textarea" value="#{commentBean.comment}" cols="40" rows="7"/>
 			</h:panelGrid>
 			<h:panelGroup>
-				<h:commandButton action="#{commentBean.hideForm}" value="Cancelar">
+				<h:commandButton action="#{commentBean.hideForm}" value="Cancelar" immediate="true">
 					<f:ajax event="action" execute="@this" render="@form" immediate="true"/>
 				</h:commandButton>
 				<h:commandButton action="#{commentBean.submitComment}" value="Enviar comentário" >
@@ -21,6 +23,7 @@
 						<f:param name="movieId" value="#{movieController.movie.id}"/>
 					</f:ajax>
 				</h:commandButton>
-			</h:panelGroup>			
+			</h:panelGroup>		
+		</h:form>	
 	</ui:composition>
 </html>

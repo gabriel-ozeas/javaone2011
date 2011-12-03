@@ -76,6 +76,7 @@ public class PopulateDatabaseSessionBean {
 		m1.setDirector("Peter Jackson");
 		m1.setYear(2011);
 		m1.setGenre(Genre.ADVENTURE);
+		m1.setMoviePicturePath("lords_of_the_rings.jpg");
 		m1.getStars().add(actor1);
 		m1.getStars().add(actor2);
 		m1.getStars().add(actor3);
@@ -86,6 +87,7 @@ public class PopulateDatabaseSessionBean {
 		m2.setDirector("Christopher Nolan");
 		m2.setYear(2012);
 		m2.setGenre(Genre.ACTION);
+		m2.setMoviePicturePath("batman.jpg");
 		m2.getStars().add(actor1);
 		m2.getStars().add(actor2);
 		movies.addMovie(m2);
@@ -95,6 +97,7 @@ public class PopulateDatabaseSessionBean {
 		m3.setDirector("Guy Ritchie");
 		m3.setYear(2011);
 		m3.setGenre(Genre.CRIME);
+		m3.setMoviePicturePath("sherlock_holmes.jpg");
 		m3.getStars().add(actor1);
 		m3.getStars().add(actor2);
 		movies.addMovie(m3);
@@ -104,6 +107,7 @@ public class PopulateDatabaseSessionBean {
 		m4.setDirector("Brett Ratner");
 		m4.setYear(2002);
 		m4.setGenre(Genre.DRAMA);
+		m4.setMoviePicturePath("reddragon.jpg");
 		m4.getStars().add(actor1);
 		movies.addMovie(m4);
 	}

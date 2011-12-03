@@ -129,6 +129,11 @@
 	background: #f1f1f1;
 }
 
+.voltar-link {
+	float:right;
+	margin-botton:5px;	
+}
+
 .formulario {
 	font-size: 1.4em;
 }
@@ -137,7 +142,7 @@
 	padding: 5px 10px;
 }
 
-.formulario input[type=text], .formulario textarea {
+.formulario input[type=text],.formulario textarea {
 	border: 01px #cccccc solid;
 	padding: 3px 7px 3px 7px;
 }
@@ -148,7 +153,7 @@
 
 .formulario textarea {
 	font-size: 0.8em;
-	background:white;
+	background: white;
 }
 
 .formulario input[type=submit] {
@@ -160,13 +165,14 @@
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: none;
+	margin: 0 05px;
+	float: right;
 }
 
 .formulario input[type=submit]:hover {
 	cursor: pointer;
-	margin: 0 05px;
-	background: blue;
-	color: #000000;
+	background: #3B5998;
+	color: #ffffff;
 }
 
 .descricao {
@@ -179,6 +185,17 @@
 	margin-bottom: 10px;
 }
 
+#briefing {
+	width: 220px;
+	float: left;
+}
+
+#info {
+	float: left;
+	width: 660px;
+	margin-left: 5px;
+}
+
 #movie-comments {
 	background: #f1f1f1;
 	width: 100%;
@@ -188,8 +205,7 @@
 
 #movie-comments .comment {
 	border-bottom: #d5d5d5 01px dotted;
-	padding: 10px 3px 10px 3px; 
-	
+	padding: 10px 3px 10px 3px;
 }
 
 #movie-comments .comment small {
@@ -200,53 +216,93 @@
 	padding: 5px 0 5px 5px;
 }
 
-#movie-comments #comment-form #add-comment {
-	padding:0 0 10px 0;
-	margin:10xp 0 10px 0;
+#movie-comments #comment-form {
+	font-family: "Myriad Pro", Arial, sans-serif;
+	width: 100%;
+	float: left;
+	background: #5B7483;
+	padding: 10px 5px;
 }
 
 #movie-comments .comment-link {
-	color:#ffffff;
-	background:#5B7483;
-	
-	text-decoration:none;
-	padding: 10px 5px 10px 10px;
-	width:100%;
-	float:left;
-	
-	font-size:0.5em;
+	color: #ffffff;
+	background: #5B7483;
+	text-decoration: none;
+	padding: 10px 0 10px 10px;
+	width: 100%;
+	float: left;
+	font-size: 0.5em;
 	font-family: Arial, Verdana, sans-serif;
 	font-weight: bolder;
 	text-transform: uppercase;
-	border-bottom: 01px solid #4D6776;
 }
 
 #movie-comments .comment-link:hover {
-	background:#505A74;	
+	background: #505A74;
 }
 
-
-#movie-comments #comment-form #add-comment  {
+#movie-comments #comment-form #add-comment {
 	width: 50%;
-	float:left;
+	float: left;
 	padding: 10px;
+	text-align: right;
 }
-
 
 #movie-comments  #comment-form #add-comment input[type=submit] {
-	float:right;
-	color:#ffffff;
+	color: #ffffff;
+	margin: 0 5px;
+}
+
+#movie-comments  #comment-form #add-comment input[type=submit]:hover {
+	background: #3B5998;
+	color: #EDEFF4;
 }
 
 #movie-comments #comment-list {
-	float:left;
-	width:100%;
+	float: left;
+	width: 100%;
 	padding: 10px;
 }
 
 #movie-comments #comment-list p {
-	font-family:Arial, Verdana, sans-serif;
+	font-family: Arial, Verdana, sans-serif;
 	font-size: 0.8em;
-	color:#333333;
+	color: #333333;
 	margin: 4px 4px 4px 20px;
+}
+
+.movie-box {
+	width: 215px;
+	float: left;
+	margin-right: 3px;
+}
+
+.movie-box .movie-image {
+	text-align: center;
+}
+
+.movie-box .movie-image a {
+	border: none;
+}
+
+.movie-box .movie-description {
+	width: 100%;
+	float: left;
+	margin-top: 5px;
+	font-family: "Myriad Pro", Arial, sans-serif;
+}
+
+.movie-box .movie-description a {
+	text-decoration: none;
+	color: #333333;
+}
+
+.movie-box .movie-description .movie-title {
+	text-align: center;
+	font-weight: bolder;
+}
+
+.movie-box .movie-description .movie-director-genre {
+	text-align: center;
+	margin-top: 2px;
 }

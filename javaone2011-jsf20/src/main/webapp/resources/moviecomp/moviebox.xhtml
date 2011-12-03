@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+	<cc:interface>
+		<cc:attribute name="title"/>
+		<cc:attribute name="movieId"/>
+		<cc:attribute name="director" />
+		<cc:attribute name="genre" />
+		<cc:attribute name="imagePath" />
+	</cc:interface>
+	
+	<cc:implementation>
+		<div class="movie-box">
+			<div class="movie-image">
+				<ui:fragment rendered="#{cc.attrs.imagePath != null}">
+				<h:link outcome="showMovie" >
+					<h:graphicImage library="images" name="movies/#{cc.attrs.imagePath}"/>
+					<f:param name="movieId" value="#{cc.attrs.movieId}"/>
+				</h:link>
+				</ui:fragment>
+			</div>
+			<div class="movie-description">
+				<div class="movie-title">
+					<h:link outcome="showMovie" value="#{cc.attrs.title}">
+						<f:param name="movieId" value="#{cc.attrs.movieId}"/>
+					</h:link>
+				</div>
+				<div class="movie-director-genre">
+					<ui:fragment render="#{cc.attrs.director}">
+						#{cc.attrs.director} -
+					</ui:fragment>
+					#{cc.attrs.genre.value}
+				</div>
+			</div>
+		</div>
+	</cc:implementation>
+</html>
