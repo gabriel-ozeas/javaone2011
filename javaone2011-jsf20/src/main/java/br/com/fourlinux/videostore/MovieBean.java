@@ -1,5 +1,10 @@
 package br.com.fourlinux.videostore;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +16,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.model.SelectItem;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import br.com.fourlinux.videostore.domain.Actor;
 import br.com.fourlinux.videostore.domain.Genre;
@@ -33,6 +41,8 @@ public class MovieBean implements Serializable {
 	private MovieManagerSessionBean movies;
 	private Movie movie;
 
+	private String movieImagePath;
+
 	public MovieBean() {
 		movie = new Movie();
 	}
@@ -44,6 +54,9 @@ public class MovieBean implements Serializable {
 
 	public String save() {
 		if (movie != null) {
+			if (movieImagePath != null) {
+				movie.setMoviePicturePath(movieImagePath);
+			}
 			movies.addMovie(movie);
 			movie = null;
 		}
@@ -72,9 +85,10 @@ public class MovieBean implements Serializable {
 			 * request, a variável de instância movie irá se perder. Para isso
 			 * vamos utilizar os escope Flash do JSF 2.0
 			 */
-			Flash flashScope = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+			Flash flashScope = FacesContext.getCurrentInstance()
+					.getExternalContext().getFlash();
 			flashScope.put("movie", movie);
-			
+
 			return "/movie/show?faces-redirect=true";
 		} else {
 			FacesMessage errorMessage = new FacesMessage(
@@ -82,7 +96,24 @@ public class MovieBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, errorMessage);
 			return "/movie/list?faces-redirect=true";
 		}
+	}
 
+	public void uploadMovieImage(FileUploadEvent event) {
+		UploadedFile uploadedFile = event.getFile();
+
+		File newFile = new File("/resources/images/movies/" + uploadedFile.getFileName());
+		try {
+			InputStream fileStream = new BufferedInputStream(uploadedFile.getInputstream());
+			FileOutputStream newFileStream = new FileOutputStream(newFile);
+			while(fileStream.available() != 0) {
+				newFileStream.write(fileStream.read());
+			}
+			this.movieImagePath = uploadedFile.getFileName();
+		} catch (IOException e) {
+			FacesMessage errorMessage = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Não foi possível enviar image.", null);
+			FacesContext.getCurrentInstance().addMessage(null, errorMessage);
+		}
 	}
 
 	public List<Movie> getMovies() {

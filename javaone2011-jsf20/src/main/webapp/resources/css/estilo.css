@@ -130,8 +130,8 @@
 }
 
 .voltar-link {
-	float:right;
-	margin-botton:5px;	
+	float: right;
+	margin-botton: 5px;
 }
 
 .formulario {
@@ -220,15 +220,34 @@
 	font-family: "Myriad Pro", Arial, sans-serif;
 	width: 100%;
 	float: left;
-	background: #5B7483;
-	padding: 10px 5px;
+	background: #ababac;
+	padding: 10px 0 10px 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#movie-comments #comment-form input[type=text],#movie-comments #comment-form textarea {
+	border: 01px solid #b8c0c4;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#movie-comments #comment-form textarea {
+	padding: 05px;
+	font-family: "Myriad Pro", Arial, sans-serif;
+}
+
+#movie-comments #comment-form input[type=text]:hover,#movie-comments #comment-form textarea:hover
+	{
+	border: 01px solid #4e565b;
 }
 
 #movie-comments .comment-link {
 	color: #ffffff;
-	background: #5B7483;
 	text-decoration: none;
-	padding: 10px 0 10px 10px;
+	margin: 10px;
 	width: 100%;
 	float: left;
 	font-size: 0.5em;

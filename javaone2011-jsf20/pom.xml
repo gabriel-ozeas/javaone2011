@@ -124,5 +124,21 @@
     		<artifactId>javaee-api</artifactId>
     		<scope>provided</scope>
     	</dependency>
-    </dependencies>
+    	<dependency>
+    		<groupId>org.primefaces</groupId>
+    		<artifactId>primefaces</artifactId>
+    		<version>3.0.M4</version>
+    		<scope>compile</scope>
+    	</dependency>
+    	<dependency>
+    		<groupId>commons-fileupload</groupId>
+    		<artifactId>commons-fileupload</artifactId>
+    		<version>1.2.2</version>
+    	</dependency>
+    	<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>2.1</version>
+    	</dependency>
+	</dependencies>
 </project>

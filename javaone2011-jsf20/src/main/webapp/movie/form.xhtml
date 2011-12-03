@@ -1,50 +1,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
 
-	<ui:composition template="/WEB-INF/layouts/template.xhtml">
-		<ui:define name="titulo">Novo filme</ui:define>
-		<ui:define name="conteudo">
-		
-			<h:messages globalOnly="true" errorClass="message-error" infoClass="message-info"/>
-		
-			<h:form id="form" styleClass="formulario">
-				<h:panelGrid columns="3">
-					<h:outputText value="Titulo" />
-					<h:inputText id="title" value="#{movieController.movie.title}" required="true"/>
-					<h:message for="title" errorClass="message-form-error" infoClass="message-form-info"/>	
-				
-					<h:outputText value="Diretor: " />
-					<h:inputText id="director" value="#{movieController.movie.director}" required="true"/>
-					<h:message for="director" errorClass="message-form-error" infoClass="message-form-info"/>
-					
-					<h:outputText value="Genêro: " />
-					<h:selectOneMenu value="#{movieController.movie.genre}" required="true" id="gender">
-						<f:selectItems value="#{movieController.genreList}" />
-					</h:selectOneMenu>	
-					<h:message for="gender" errorClass="message-form-error" infoClass="message-form-info"/>
+<ui:composition template="/WEB-INF/layouts/template.xhtml">
+	<ui:define name="titulo">Novo filme</ui:define>
+	<ui:define name="conteudo">
 
-					<h:outputText value="Estrelas: " />
-					<h:selectManyMenu value="#{movieController.movie.stars}" id="actors">
-						<f:converter converterId="br.com.fourlinux.videostore.converters.Actor" />
-						<f:selectItems value="#{movieController.actorList}" />	
-					</h:selectManyMenu>
-					<h:message for="actors" errorClass="message-form-error" infoClass="message-form-info"/>
+		<h:messages globalOnly="true" errorClass="message-error"
+			infoClass="message-info" />
 
-					<h:outputText value="Ano" />
-					<h:inputText id="year" value="#{movieController.movie.year}" required="true" size="4">
-						<f:validateLongRange minimum="1800" maximum="3000"/>
-					</h:inputText>
-					<h:message for="year" errorClass="message-form-error" infoClass="message-form-info"/>
+		<h:form id="form" styleClass="formulario"
+			enctype="multipart/form-data">
+			<h:panelGrid columns="3">
+				<h:outputText value="Titulo" />
+				<h:inputText id="title" value="#{movieController.movie.title}"
+					required="true" />
+				<h:message for="title" errorClass="message-form-error"
+					infoClass="message-form-info" />
 
-				</h:panelGrid>
-				<h:panelGroup>
-					<h:commandButton action="#{movieController.save}" value="Adicionar"/>
-					<h:commandButton action="/movie/list.xhtml?faces-redirect=true" value="Cancelar" immediate="true"/>
-				</h:panelGroup>
-			</h:form>
-		</ui:define>
-	</ui:composition>
+				<h:outputText value="Diretor: " />
+				<h:inputText id="director" value="#{movieController.movie.director}"
+					required="true" />
+				<h:message for="director" errorClass="message-form-error"
+					infoClass="message-form-info" />
+
+				<h:outputText value="Genêro: " />
+				<h:selectOneMenu value="#{movieController.movie.genre}"
+					required="true" id="gender">
+					<f:selectItems value="#{movieController.genreList}" />
+				</h:selectOneMenu>
+				<h:message for="gender" errorClass="message-form-error"
+					infoClass="message-form-info" />
+
+				<h:outputText value="Estrelas: " />
+				<h:selectManyMenu value="#{movieController.movie.stars}" id="actors">
+					<f:converter
+						converterId="br.com.fourlinux.videostore.converters.Actor" />
+					<f:selectItems value="#{movieController.actorList}" />
+				</h:selectManyMenu>
+				<h:message for="actors" errorClass="message-form-error"
+					infoClass="message-form-info" />
+
+				<h:outputText value="Ano" />
+				<h:inputText id="year" value="#{movieController.movie.year}"
+					required="true" size="4">
+					<f:validateLongRange minimum="1800" maximum="3000" />
+				</h:inputText>
+				<h:message for="year" errorClass="message-form-error"
+					infoClass="message-form-info" />
+			</h:panelGrid>
+			<h:panelGroup>
+				<h:commandButton action="#{movieController.save}" value="Adicionar" />
+				<h:commandButton action="/movie/list.xhtml?faces-redirect=true"
+					value="Cancelar" immediate="true" />
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
