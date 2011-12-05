@@ -124,9 +124,5 @@
     		<artifactId>jsf-facelets</artifactId>
     		<version>1.1.15</version>
     	</dependency>
-    	<dependency>
-    		<groupId>org.primefaces</groupId>
-    		<artifactId>primefaces</artifactId>
-    	</dependency>
     </dependencies>    
 </project>
