@@ -44,6 +44,13 @@ public class MovieManagerSessionBean {
 		}
 		return false;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Movie> getFavoriteMovies(Long userId) {
+		Query query = entityManager.createQuery("SELECT movies FROM User u JOIN u.favoriteMovies movies WHERE u.id = :id");
+		query.setParameter("id", userId);
+		return query.getResultList();
+	}
 
 	public void addMovie(Movie movie) {
 		entityManager.persist(movie);
