@@ -18,12 +18,30 @@
 					<h1><span><span id="logo-num-4">4</span>Linux : </span>JavaOne2011</h1>
 					<p>As novidades do JSF2!</p>
 				</div>
-				<div id="menu">
-					<ul>
-						<li><a href="#">Navegação Implicita</a></li>
-						<li><a href="#">Recursos</a></li>
-						<li><a href="#">ManagedBeans</a></li>
-					</ul>
+				<div id="login">
+					<h:form id="login-form">
+						<ui:fragment rendered="#{sessionScope.user == null}">
+							<h:outputLabel value="Email: " for="user-email"/>
+							<h:inputText value="#{loginBean.email}" id="user-email"/>
+							<br />
+							<h:outputLabel value="Password: " for="user-password"/>
+							<h:inputSecret value="#{loginBean.password}" id="user-password"/>
+							<br />
+							<h:message for="user-email" erroClass="login-error-msg"/>
+							<h:commandButton action="#{loginBean.login}" value="OK">
+								<f:ajax event="action" execute="@form" render="@all"/>
+							</h:commandButton>
+						</ui:fragment>
+						<ui:fragment rendered="#{sessionScope.user != null}">
+							<h:link outcome="showUser" value="Info" styleClass="menu-link" >
+								<f:param name="userId" value="#{user.id}"/>		
+							</h:link>
+							<h:commandLink action="#{loginBean.logout}" value="Sair" styleClass="menu-link">
+								<f:ajax event="action" render="@all"/>
+							</h:commandLink>
+						</ui:fragment>
+						
+					</h:form>
 				</div>
 			</div>
 		</div>

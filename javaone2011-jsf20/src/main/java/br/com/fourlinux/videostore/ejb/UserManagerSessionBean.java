@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -45,6 +46,10 @@ public class UserManagerSessionBean {
 	public User getUserByEmail(String email) {
 		Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email");
 		query.setParameter("email", email);
-		return (User) query.getSingleResult();
+		try {
+			return (User) query.getSingleResult();
+		} catch(NoResultException exception) {
+			return null;
+		}
 	}
 }

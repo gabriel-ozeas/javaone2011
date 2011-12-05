@@ -12,8 +12,7 @@
 		<h:messages globalOnly="true" errorClass="message-error"
 			infoClass="message-info" />
 
-		<h:form id="form" styleClass="formulario"
-			enctype="multipart/form-data">
+		<h:form id="form" styleClass="formulario">
 			<h:panelGrid columns="3">
 				<h:outputText value="Titulo" />
 				<h:inputText id="title" value="#{movieController.movie.title}"
@@ -36,11 +35,11 @@
 					infoClass="message-form-info" />
 
 				<h:outputText value="Estrelas: " />
-				<h:selectManyMenu value="#{movieController.movie.stars}" id="actors">
+				<h:selectManyListbox value="#{movieController.movie.stars}" id="actors" size="5">
 					<f:converter
 						converterId="br.com.fourlinux.videostore.converters.Actor" />
 					<f:selectItems value="#{movieController.actorList}" />
-				</h:selectManyMenu>
+				</h:selectManyListbox>
 				<h:message for="actors" errorClass="message-form-error"
 					infoClass="message-form-info" />
 

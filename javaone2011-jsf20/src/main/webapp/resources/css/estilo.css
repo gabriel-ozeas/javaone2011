@@ -175,6 +175,11 @@
 	color: #ffffff;
 }
 
+.formulario select {
+  width: 300px;
+  font-size: 1.2em;
+}
+
 .descricao {
 	width: 100%;
 	float: left;
@@ -227,7 +232,8 @@
 	-webkit-border-radius: 5px;
 }
 
-#movie-comments #comment-form input[type=text],#movie-comments #comment-form textarea {
+#movie-comments #comment-form input[type=text],#movie-comments #comment-form textarea
+	{
 	border: 01px solid #b8c0c4;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -257,7 +263,7 @@
 }
 
 #movie-comments .comment-link:hover {
-	background: #505A74;
+	color: #505A74;
 }
 
 #movie-comments #comment-form #add-comment {
@@ -324,4 +330,47 @@
 .movie-box .movie-description .movie-director-genre {
 	text-align: center;
 	margin-top: 2px;
+}
+
+/* Login */
+#login {
+	float: right;
+	text-align: right;
+	font-family: "Myriad Pro", Arial, sans-serif;
+	font-size: 0.7em;
+}
+
+#login label {
+	color: #cccccc;
+	text-transform: uppercase;
+}
+
+#login input[type="text"],#login input[type=password] {
+	margin-bottom: 03px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 2px;
+}
+
+#login .login-error-msg {
+	color: red;
+	padding: 03px;
+	margin-bottom: 03px;
+}
+
+#login .menu-link {
+	background: #333333;
+	font-size: 2.5em;
+	padding: 05px 15px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #cccccc;
+	text-decoration: none;
+}
+
+#login .menu-link:hover {
+	background: #cccccc;
+	color: #333333;
 }

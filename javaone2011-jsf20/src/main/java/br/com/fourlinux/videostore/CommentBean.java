@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Pattern;
@@ -20,6 +21,7 @@ import br.com.fourlinux.videostore.ejb.UserManagerSessionBean;
 @ManagedBean
 @ViewScoped
 public class CommentBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private MovieManagerSessionBean movies;
@@ -28,39 +30,41 @@ public class CommentBean implements Serializable {
 	@EJB
 	private CommentsSessionBean comments;
 
+	@ManagedProperty(value = "#{movieController}")
+	private MovieBean movieBean;
+
 	@Size(min = 2, max = 300)
 	private String comment;
 
 	@Size(min = 3, message = "Por favor, entre com um e-mail válido.")
-	@Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", 
-		message = "Por favor, entre com um e-mail válido.")
+	@Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", message = "Por favor, entre com um e-mail válido.")
 	private String email;
+
 	private Long movieId;
 
 	private boolean commentFormDisplayed;
 
 	public void submitComment() {
 		User user = users.getUserByEmail(email);
-		Movie movie = movies.getMovie(movieId);
-
-		if (user != null) {
-			if (movie != null) {
-				Comment newComment = new Comment(comment, user, movie);
-				comments.addComment(newComment);
-
-				hideForm();
-			} else {
-				FacesMessage msg = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "Filme não encontrado.",
-						null);
-				FacesContext.getCurrentInstance().addMessage(null, msg);
-			}
-		} else {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Usuário com e-mail " + email + " não encontrado.", null);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+		// Create user with just the email.
+		if (user == null) {
+			user = new User();
+			user.setEmail(email);
+			users.addUser(user);
 		}
 
+		Movie movie = movies.getMovie(movieId);
+
+		if (movie != null) {
+			Comment newComment = new Comment(comment, user, movie);
+			comments.addComment(newComment);
+
+			hideForm();
+		} else {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Filme não encontrado.", null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
 	}
 
 	public void showForm(Long movieId) {
@@ -73,6 +77,7 @@ public class CommentBean implements Serializable {
 		comment = null;
 		email = null;
 	}
+	
 
 	public boolean isCommentFormDisplayed() {
 		return commentFormDisplayed;
@@ -105,5 +110,12 @@ public class CommentBean implements Serializable {
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
+	
+	public MovieBean getMovieBean() {
+		return movieBean;
+	}
 
+	public void setMovieBean(MovieBean movieBean) {
+		this.movieBean = movieBean;
+	}
 }

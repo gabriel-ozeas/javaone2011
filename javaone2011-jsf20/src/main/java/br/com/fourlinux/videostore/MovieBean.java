@@ -1,28 +1,23 @@
 package br.com.fourlinux.videostore;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.model.SelectItem;
 
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
-
 import br.com.fourlinux.videostore.domain.Actor;
 import br.com.fourlinux.videostore.domain.Genre;
 import br.com.fourlinux.videostore.domain.Movie;
+import br.com.fourlinux.videostore.domain.User;
 import br.com.fourlinux.videostore.ejb.MovieManagerSessionBean;
 
 /**
@@ -97,7 +92,30 @@ public class MovieBean implements Serializable {
 			return "/movie/list?faces-redirect=true";
 		}
 	}
+	
+	public boolean isToShowFavoriteButton() {
+		User user = retrieveUser();
+		if (user != null) {
+			return !(movies.isFavoriteMovie(movie.getId(), user.getId()));
+		} else {
+			return false;
+		}
+	}
+	
+	public void markAsFavorite() {
+		User user = retrieveUser();
+		if (user != null) {
+			movies.markAsFavorite(movie.getId(), user.getId());
+		}
+	}
+	
+	private User retrieveUser() {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> sessionMap = context.getSessionMap();
+		return (User) sessionMap.get("user");
+	}
 
+	/*
 	public void uploadMovieImage(FileUploadEvent event) {
 		UploadedFile uploadedFile = event.getFile();
 
@@ -115,7 +133,8 @@ public class MovieBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, errorMessage);
 		}
 	}
-
+	*/
+	
 	public List<Movie> getMovies() {
 		return movies.getAllMovies();
 	}

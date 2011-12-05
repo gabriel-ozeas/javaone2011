@@ -16,22 +16,11 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/faces/movie/list.xhtml</welcome-file>
+		<welcome-file>faces/movie/showcase.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
-
-	
-	<filter>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<servlet-name>FacesServlet</servlet-name>
-	</filter-mapping>
- 	
 </web-app>

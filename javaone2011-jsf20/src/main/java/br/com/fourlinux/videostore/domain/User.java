@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ public class User implements Serializable {
 	private Date birthday;
 	private String email;
 	private String password;
+	private boolean admin;
 
 	private List<Movie> favoriteMovies = new ArrayList<Movie>();
 	private List<Comment> comments = new ArrayList<Comment>();
@@ -74,6 +76,7 @@ public class User implements Serializable {
 		this.birthday = birthday;
 	}
 
+	@Basic(optional = false)
 	public String getEmail() {
 		return email;
 	}
@@ -110,4 +113,11 @@ public class User implements Serializable {
 		this.comments = comments;
 	}
 
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 }

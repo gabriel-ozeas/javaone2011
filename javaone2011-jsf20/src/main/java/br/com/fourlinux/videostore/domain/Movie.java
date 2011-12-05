@@ -2,10 +2,10 @@ package br.com.fourlinux.videostore.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,7 +24,7 @@ public class Movie implements Serializable {
 	private Long id;
 	private String title;
 
-	private int year;
+	private int year = Calendar.getInstance().get(Calendar.YEAR);
 	private String director;
 
 	private Genre genre;
@@ -32,8 +32,6 @@ public class Movie implements Serializable {
 	private String moviePicturePath;
 
 	private List<Actor> stars = new ArrayList<Actor>();
-
-	private MovieStatistics statistics = new MovieStatistics();
 
 	private List<Comment> comments = new ArrayList<Comment>();
 
@@ -107,16 +105,7 @@ public class Movie implements Serializable {
 		this.stars = starts;
 	}
 
-	@Embedded
-	public MovieStatistics getStatistics() {
-		return statistics;
-	}
-
-	public void setStatistics(MovieStatistics statistics) {
-		this.statistics = statistics;
-	}
-
-	@OneToMany(mappedBy = "movie", cascade = {CascadeType.REMOVE})
+	@OneToMany(mappedBy = "movie", cascade = { CascadeType.REMOVE })
 	@OrderBy("date DESC")
 	public List<Comment> getComments() {
 		return comments;

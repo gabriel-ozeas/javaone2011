@@ -40,22 +40,28 @@ public class PopulateDatabaseSessionBean {
 	private void populateWithUsers() {
 		c4 = new User("Gustavo", "Lira", "gustavo@4linux.com.br");
 		c4.setBirthday(new Date());
+		c4.setPassword("123");
+		c4.setAdmin(true);
 		clients.addUser(c4);
 		
 		c5 = new User("Gabriel", "Ozeas", "gabriel.ozeas@4linux.com.br");
 		c5.setBirthday(new Date());
+		c5.setPassword("123");
 		clients.addUser(c5);
 		
 		c1 = new User("Joao", "Jose", "joao.jose@4linux.com.br");
 		c1.setBirthday(new Date());
+		c1.setPassword("123");
 		clients.addUser(c1);
 		
 		c2 = new User("Maria", "Jose", "maria.jose@4linux.com.br");
 		c2.setBirthday(new Date());
+		c2.setPassword("123");
 		clients.addUser(c2);
 		
 		c3 = new User("Antonio", "Silva", "antonio.silva@4linux.com.br");
 		c3.setBirthday(new Date());
+		c3.setPassword("123");
 		clients.addUser(c3);
 	}
 	
