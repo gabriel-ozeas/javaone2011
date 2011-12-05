@@ -36,14 +36,14 @@ public class LoginBean {
 					FacesMessage msg = new FacesMessage(
 							FacesMessage.SEVERITY_ERROR,
 							"Email/Senha incorretos", null);
-					FacesContext.getCurrentInstance().addMessage("login-form:user-email",
+					FacesContext.getCurrentInstance().addMessage("login-form:login-user-email",
 							msg);
 				}
 			} else {
 				FacesMessage msg = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR, "Email/Senha incorretos",
 						null);
-				FacesContext.getCurrentInstance().addMessage("login-form:user-email", msg);
+				FacesContext.getCurrentInstance().addMessage("login-form:login-user-email", msg);
 			}
 		}
 	}

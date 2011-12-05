@@ -28,7 +28,6 @@ public class MovieManagerSessionBean {
 			if (user != null && movie != null) {
 				user.getFavoriteMovies().add(movie);
 				entityManager.merge(user);
-				System.out.println("Marcando como favorito");
 			}
 		}
 	}

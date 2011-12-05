@@ -188,6 +188,13 @@
 
 .descricao dd {
 	margin-bottom: 10px;
+	width:100%;
+	float:left;
+}
+
+.descricao dt {
+	width:100%;
+	float:left;
 }
 
 #briefing {
@@ -300,6 +307,7 @@
 	width: 215px;
 	float: left;
 	margin-right: 3px;
+	
 }
 
 .movie-box .movie-image {
@@ -314,6 +322,7 @@
 	width: 100%;
 	float: left;
 	margin-top: 5px;
+	font-size: 0.7em;
 	font-family: "Myriad Pro", Arial, sans-serif;
 }
 
